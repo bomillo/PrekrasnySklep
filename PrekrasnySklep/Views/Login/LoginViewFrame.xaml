@@ -1,0 +1,14 @@
+﻿<Window x:Class="PrekrasnySklep.Views.Login.LoginViewFrame"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PrekrasnySklep.Views.Login"
+        mc:Ignorable="d"
+        Title="LoginViewFrame" Height="200" Width="275"
+        MaxHeight="240" MaxWidth="290"
+        MinHeight="240" MinWidth="290">
+    <Grid>
+        <Frame Name="frame" NavigationUIVisibility="Hidden" />
+    </Grid>
+</Window>
