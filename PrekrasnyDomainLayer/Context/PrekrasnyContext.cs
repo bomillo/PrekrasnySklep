@@ -59,16 +59,31 @@ namespace PrekrasnyDomainLayer.Context
         public void Seed()
         {
             UserService userService = new(this);
-
-            userService.RegisterNewUser("test1", "test1");
-            userService.RegisterNewUser("test2", "test2");
-            userService.RegisterNewUser("test3", "test3");
             userService.RegisterNewUser("admin", "admin");
             var admin = Users.First(u => u.UserName == "admin");
             admin.UserRole = UserRole.Admin;
             Users.Update(admin);
-            SaveChanges();
 
+
+            userService.RegisterNewUser("cso", "cso");
+            var cso = Users.First(u => u.UserName == "cso");
+            cso.UserRole = UserRole.CustomerService;
+            Users.Update(cso);
+
+
+            userService.RegisterNewUser("shp", "shp");
+            var shipping = Users.First(u => u.UserName == "shp");
+            shipping.UserRole = UserRole.Shipping;
+            Users.Update(shipping);
+
+            var category = Categories.Add(new Category { Name = "Category 1" }).Entity;
+
+            var product1 = Products.Add(new Product() { Name = "Product 1", Price = 10, Category = category }).Entity;
+            var product2 = Products.Add(new Product() { Name = "Product 2", Price = 20, Category = category }).Entity;
+
+            var order = Orders.Add(new Order() { User = cso, Status = OrderStatus.Ordered, Items = new List<OrderItem> { new OrderItem() { Product = product1, Quantity = 2 } , new OrderItem() { Product = product2, Quantity = 1 } } });
+
+            SaveChanges();
         }
     }
 }

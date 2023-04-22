@@ -1,0 +1,44 @@
+﻿<Page x:Class="PrekrasnySklep.Views.Tabs.InventoryManager"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PrekrasnySklep.Views.Tabs" xmlns:tabs="clr-namespace:PrekrasnySklep.ViewModels.Tabs" d:DataContext="{d:DesignInstance Type=tabs:InventoryManagerViewModel}"
+      Title="DUpa romana" mc:Ignorable="d" MinHeight="400" MinWidth="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Fill="White" Grid.ColumnSpan="22" Grid.RowSpan="22"/>
+        <ListView SelectionChanged="cartList_SelectionChanged" Name="cartList" Margin="10,10,5,10" ItemsSource="{Binding Products}" SizeChanged="CartSizeChanged" Grid.RowSpan="22">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Height" Value="50" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView AllowsColumnReorder="False">
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}">
+                        <GridViewColumnHeader SizeChanged="CartSizeChanged" Content="Name"/>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Price}">
+                        <GridViewColumnHeader SizeChanged="CartSizeChanged" Content="Price"/>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Category.Name}">
+                        <GridViewColumnHeader SizeChanged="CartSizeChanged" Content="Category"/>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Content="Add Product" Command="{Binding AddProductCommand}" Margin="5,5,10,10" Grid.Column="1" Grid.Row="0"/>
+        <Button Content="Add Category" Command="{Binding AddCategoryCommand}" Margin="5,5,10,10" Grid.Column="1" Grid.Row="1"/>
+        <Button Content="Edit Product" Command="{Binding EditProductCommand}" Margin="5,5,10,10" Grid.Column="2" Grid.Row="0"/>
+        <Button Content="Remove Category" Command="{Binding RemoveCategoryCommand}" Margin="5,5,10,10" Grid.Column="2" Grid.Row="1"/>
+    </Grid>
+</Page>
