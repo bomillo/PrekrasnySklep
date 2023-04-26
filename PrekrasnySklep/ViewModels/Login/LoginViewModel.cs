@@ -1,6 +1,7 @@
 ﻿using PrekrasnyDomainLayer.Models;
 using PrekrasnyDomainLayer.Services;
 using PrekrasnySklep.Base;
+using PrekrasnySklep.ViewModels.Tabs;
 using PrekrasnySklep.Views;
 using PrekrasnySklep.Views.Login;
 using System;
@@ -20,9 +21,9 @@ public class LoginViewModel : ViewModelBase
     private string _password;
     private string _errorMessage;
 
-    public ICommand LoginCommand { get; }
-    public ICommand RegisterCommand { get; }
-    public ICommand PasswordChangedCommand { get; }
+    public RelayCommand LoginCommand { get; }
+    public RelayCommand RegisterCommand { get; }
+    public RelayCommand PasswordChangedCommand { get; }
 
     public LoginViewModel(UserService userService)
     {
@@ -39,7 +40,7 @@ public class LoginViewModel : ViewModelBase
         {
             _username = value;
             OnPropertyChanged();
-            ((RelayCommand)LoginCommand).RaiseCanExecuteChanged();
+            LoginCommand.RaiseCanExecuteChanged();
         }
     }
 
@@ -50,7 +51,7 @@ public class LoginViewModel : ViewModelBase
         {
             _password = value;
             OnPropertyChanged();
-            ((RelayCommand)LoginCommand).RaiseCanExecuteChanged();
+            LoginCommand.RaiseCanExecuteChanged();
         }
     }
 
@@ -87,9 +88,10 @@ public class LoginViewModel : ViewModelBase
             {
                 ErrorMessage = string.Empty;
                 
-                Application.Current.MainWindow.Close();
-                Application.Current.MainWindow = new EmptyWindow();
+                var a = Application.Current.MainWindow;
+                Application.Current.MainWindow = new TabbedWindow(new TabbedWindowViewModel());
                 Application.Current.MainWindow.Show();
+                a.Close();
             }
             else
             {

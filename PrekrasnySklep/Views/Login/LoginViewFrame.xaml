@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:PrekrasnySklep.Views.Login"
         mc:Ignorable="d"
         Title="LoginViewFrame" Height="200" Width="275"
-        MaxHeight="240" MaxWidth="290"
-        MinHeight="240" MinWidth="290">
+        MaxHeight="300" MaxWidth="400"
+        MinHeight="300" MinWidth="400">
     <Grid>
         <Frame Name="frame" NavigationUIVisibility="Hidden" />
     </Grid>

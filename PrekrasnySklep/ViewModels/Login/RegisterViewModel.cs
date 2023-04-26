@@ -19,10 +19,10 @@ public class RegisterViewModel : ViewModelBase
     private string _passwordValidation;
     private string _errorMessage;
 
-    public ICommand RegisterCommand { get; }
-    public ICommand PasswordChangedCommand { get; }
-    public ICommand PasswordValidationChangedCommand { get; }
-    public ICommand GoBackCommand { get; }
+    public RelayCommand RegisterCommand { get; }
+    public RelayCommand PasswordChangedCommand { get; }
+    public RelayCommand PasswordValidationChangedCommand { get; }
+    public RelayCommand GoBackCommand { get; }
 
     public RegisterViewModel(UserService userService)
     {
@@ -41,7 +41,7 @@ public class RegisterViewModel : ViewModelBase
         {
             _username = value;
             OnPropertyChanged();
-            ((RelayCommand)RegisterCommand).RaiseCanExecuteChanged();
+            RegisterCommand.RaiseCanExecuteChanged();
         }
     }
 
@@ -52,7 +52,7 @@ public class RegisterViewModel : ViewModelBase
         {
             _password = value;
             OnPropertyChanged();
-            ((RelayCommand)RegisterCommand).RaiseCanExecuteChanged();
+            RegisterCommand.RaiseCanExecuteChanged();
         }
     }
 

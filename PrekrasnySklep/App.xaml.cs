@@ -21,6 +21,10 @@ namespace PrekrasnySklep
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+            StartApp();
+        }
+
+        public void StartApp() {
             PrekrasnyContext.InitalizeSharedContext();
 
             LoginViewModel loginViewModel = new LoginViewModel(new UserService());
