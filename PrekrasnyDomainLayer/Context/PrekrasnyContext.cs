@@ -62,18 +62,21 @@ namespace PrekrasnyDomainLayer.Context
             userService.RegisterNewUser("admin", "admin");
             var admin = Users.First(u => u.UserName == "admin");
             admin.UserRole = UserRole.Admin;
+            admin.Theme = UserTheme.Dark;
             Users.Update(admin);
 
 
             userService.RegisterNewUser("cso", "cso");
             var cso = Users.First(u => u.UserName == "cso");
             cso.UserRole = UserRole.CustomerService;
+            cso.Theme = UserTheme.Dark;
             Users.Update(cso);
 
 
             userService.RegisterNewUser("shp", "shp");
             var shipping = Users.First(u => u.UserName == "shp");
             shipping.UserRole = UserRole.Shipping;
+            shipping.Theme = UserTheme.Light;
             Users.Update(shipping);
 
             var category = Categories.Add(new Category { Name = "Category 1" }).Entity;

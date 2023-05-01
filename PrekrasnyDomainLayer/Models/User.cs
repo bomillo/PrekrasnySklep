@@ -13,6 +13,7 @@ public sealed class User
     public string HashedPassword { get; set; }
 
     public UserRole UserRole { get; set; }
+    public UserTheme Theme { get; set; }
 
     public List<BasketItem> ItemsInBasket { get; set; }
 

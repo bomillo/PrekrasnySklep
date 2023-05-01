@@ -62,7 +62,7 @@ public sealed class UserService
         ModifyUser(AppState.CurrentUser, newUserName, newPassword);
     }
 
-    public void ModifyUser(User user, string? newUserName, string? newPassword)
+    public void ModifyUser(User user, string? newUserName = null, string? newPassword = null)
     {
         user.UserName = newUserName ?? user.UserName;
         user.HashedPassword = newPassword is not null ? HashPassword(newPassword) : user.HashedPassword;

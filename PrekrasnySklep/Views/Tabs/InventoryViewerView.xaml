@@ -14,7 +14,6 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
-        <Rectangle Fill="White" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
         <ListView SelectionChanged="cartList_SelectionChanged"  Name="cartList" Margin="10,10,5,10" ItemsSource="{Binding Products}" SizeChanged="CartSizeChanged" Grid.RowSpan="2">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
