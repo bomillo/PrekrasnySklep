@@ -17,6 +17,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
+using System.Windows.Controls.Primitives;
 
 namespace PrekrasnySklep.ViewModels.Tabs;
 
@@ -24,6 +25,7 @@ namespace PrekrasnySklep.ViewModels.Tabs;
 public class TabbedWindowViewModel : ViewModelBase
 {
     private ObservableCollection<TabbedViewModel>? _pageViews;
+    private readonly UserService _userService;
 
     private List<(UserRoleAccessRule userRole, Func<TabbedViewModel> vmFactory)> availableViewModels = new List<(UserRoleAccessRule, Func<TabbedViewModel>)>
     {
@@ -40,10 +42,30 @@ public class TabbedWindowViewModel : ViewModelBase
 
     public RelayCommand LogoutCommand { get; }
 
+    private bool _darkThemeChecked;
+    public bool DarkThemeChecked 
+    { 
+        get => _darkThemeChecked;
+        set
+        {
+            _darkThemeChecked = value;
+            if (_darkThemeChecked)
+            {
+                ChangeTheme(UserTheme.Dark);
+            }
+            else
+            {
+                ChangeTheme(UserTheme.Light);
+            }
+            OnPropertyChanged();
+        } 
+    }
     public TabbedWindowViewModel()
     {
+        _userService = new UserService();
         LogoutCommand = new RelayCommand(LogOut);
-
+        ((App)Application.Current).ChangeTheme(AppState.CurrentUser.Theme);
+        DarkThemeChecked = AppState.CurrentUser.Theme == UserTheme.Dark;
         foreach (var viewModelEntry in availableViewModels) 
         {
             if (((int)viewModelEntry.userRole & (int)AppState.CurrentUser!.UserRole) != 0) 
@@ -80,6 +102,13 @@ public class TabbedWindowViewModel : ViewModelBase
     {
         ((Page)sender).DataContext = currentTabbedViewModel;
         currentTabbedViewModel.Sync();
+    }
+
+    private void ChangeTheme(UserTheme theme)
+    {
+        AppState.CurrentUser!.Theme = theme;
+        _userService.ModifyUser(AppState.CurrentUser);
+        ((App)Application.Current).ChangeTheme(theme);
     }
 }
 
