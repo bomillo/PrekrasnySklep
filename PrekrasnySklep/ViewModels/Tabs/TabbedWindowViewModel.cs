@@ -41,6 +41,8 @@ public class TabbedWindowViewModel : ViewModelBase
     TabbedViewModel? currentTabbedViewModel;
 
     public RelayCommand LogoutCommand { get; }
+    public RelayCommand AboutAppCommand { get; }
+    public RelayCommand ChangePasswordCommand { get; }
 
     private bool _darkThemeChecked;
     public bool DarkThemeChecked 
@@ -60,10 +62,29 @@ public class TabbedWindowViewModel : ViewModelBase
             OnPropertyChanged();
         } 
     }
+    private bool _onInitFullScreen;
+    public bool OnInitFullScreen
+    {
+        get => _onInitFullScreen;
+        set
+        {
+            if(value !=  _onInitFullScreen)
+            {
+                _onInitFullScreen = value;
+                ChangeFullScreenSetting();
+            }
+            
+        }
+    }
     public TabbedWindowViewModel()
     {
+        
         _userService = new UserService();
+        AboutAppCommand = new RelayCommand(AboutApp);
         LogoutCommand = new RelayCommand(LogOut);
+        ChangePasswordCommand = new RelayCommand(ChangePassword);
+        OnInitFullScreen = AppState.CurrentUser!.OnInitFullScreen;
+        
         ((App)Application.Current).ChangeTheme(AppState.CurrentUser.Theme);
         DarkThemeChecked = AppState.CurrentUser.Theme == UserTheme.Dark;
         foreach (var viewModelEntry in availableViewModels) 
@@ -109,6 +130,30 @@ public class TabbedWindowViewModel : ViewModelBase
         AppState.CurrentUser!.Theme = theme;
         _userService.ModifyUser(AppState.CurrentUser);
         ((App)Application.Current).ChangeTheme(theme);
+    }
+    private void ChangeFullScreenSetting()
+    {
+        AppState.CurrentUser.OnInitFullScreen = _onInitFullScreen;
+        _userService.ModifyUser(AppState.CurrentUser);
+        Application.Current.MainWindow.WindowState = _onInitFullScreen ? WindowState.Maximized : WindowState.Normal;
+    }
+    private void AboutApp(object sender)
+    {
+        var window = new AboutWindow();
+        window.Height = 300;
+        window.Width = 400;
+        window.Owner = Application.Current.MainWindow;
+        window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+        window.ShowDialog();
+    }
+    private void ChangePassword(object sender)
+    {
+        var window = new ChangePasswordView(new Login.ChangePasswordViewModel());
+        window.Height = 300;
+        window.Width = 400;
+        window.Owner = Application.Current.MainWindow;
+        window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+        window.ShowDialog();
     }
 }
 

@@ -1,4 +1,5 @@
-﻿using PrekrasnySklep.ViewModels.Login;
+﻿using PrekrasnyDomainLayer.State;
+using PrekrasnySklep.ViewModels.Login;
 using PrekrasnySklep.ViewModels.Tabs;
 using System;
 using System.Collections.Generic;
@@ -60,6 +61,11 @@ namespace PrekrasnySklep.Views
         {
             TabbedWindowViewModel? vm = this.DataContext as TabbedWindowViewModel;
             vm?.GetDataContext(sender, e);
+        }
+
+        private void Window_Initialized(object sender, EventArgs e)
+        {
+            this.WindowState = AppState.CurrentUser!.OnInitFullScreen ? WindowState.Maximized : WindowState.Normal;
         }
     }
 }
