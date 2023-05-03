@@ -13,8 +13,8 @@ public sealed class User
     public string HashedPassword { get; set; }
 
     public UserRole UserRole { get; set; }
-    public UserTheme Theme { get; set; }
-
+    public UserTheme Theme { get; set; } = UserTheme.Dark;
+    public bool OnInitFullScreen { get; set; } = false;
     public List<BasketItem> ItemsInBasket { get; set; }
 
     internal User() { }

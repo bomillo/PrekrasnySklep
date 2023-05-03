@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PrekrasnySklep.Views.Login"
         mc:Ignorable="d"
+        Background="{DynamicResource PrimaryBackground}"
         Title="LoginViewFrame" Height="200" Width="275"
         MaxHeight="300" MaxWidth="400"
         MinHeight="300" MinWidth="400">

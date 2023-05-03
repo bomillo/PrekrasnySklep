@@ -75,7 +75,15 @@ public sealed class UserService
     {
         return context.Users.ToList();
     }
+    public bool ValidateOldPassword(string oldPassword)
+    {
+        if(!string.IsNullOrWhiteSpace(oldPassword))
+        {
+            return HashPassword(oldPassword).Equals(AppState.CurrentUser!.HashedPassword);
+        }
 
+        return false;
+    }
     private string HashPassword(string password)
     {
         return string.Concat(Sha256.ComputeHash(Encoding.UTF8.GetBytes(password)).Select(x => x.ToString("x2")));
