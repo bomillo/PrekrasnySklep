@@ -33,8 +33,9 @@
                     <TextBlock Text="Settings" Margin="-7" TextAlignment="Center" Width="60"/>
                 </MenuItem.Header>
                 <MenuItem Header="Visual theme" Height="60">
-                    <MenuItem Header="Dark" IsCheckable="True" IsChecked="{Binding Path=DarkThemeChecked}"/>
-                    <MenuItem Header="Light" IsCheckable="True" IsChecked="{Binding Path=DarkThemeChecked, Converter={StaticResource invertBool}}"/>
+                    <MenuItem Header="Dark" IsCheckable="True" Height="60" IsChecked="{Binding Path=DarkThemeChecked}"/>
+                    <Separator/>
+                    <MenuItem Header="Light" IsCheckable="True" Height="60" IsChecked="{Binding Path=DarkThemeChecked, Converter={StaticResource invertBool}}"/>
                 </MenuItem>
                 <Separator/>
                 <MenuItem Header="Fullscreen on startup" IsCheckable="True" Height="60" IsChecked="{Binding OnInitFullScreen}"/>

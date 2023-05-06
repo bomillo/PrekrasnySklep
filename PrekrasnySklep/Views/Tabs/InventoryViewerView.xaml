@@ -15,11 +15,6 @@
             <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
         <ListView SelectionChanged="cartList_SelectionChanged"  Name="cartList" Margin="10,10,5,10" ItemsSource="{Binding Products}" SizeChanged="CartSizeChanged" Grid.RowSpan="2">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="Height" Value="50" />
-                </Style>
-            </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView AllowsColumnReorder="False">
                     <GridViewColumn DisplayMemberBinding="{Binding Name}">
