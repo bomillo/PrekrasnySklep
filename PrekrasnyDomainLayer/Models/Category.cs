@@ -10,5 +10,5 @@ public sealed class Category
 
     public List<Product> Products { get; set; }
 
-    internal Category() { }
+    public Category() { }
 }
