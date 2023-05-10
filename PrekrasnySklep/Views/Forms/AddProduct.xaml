@@ -59,7 +59,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Click="Button_Click" Content="Cancel" Margin="5" />
-            <Button Grid.Column="1" Command="{Binding ChangePasswordCommand}" Content="Add Product" Margin="5" />
+            <Button Grid.Column="1" Command="{Binding AddProductCommand}" Content="Add Product" Margin="5" />
 
         </Grid>
     </Grid>

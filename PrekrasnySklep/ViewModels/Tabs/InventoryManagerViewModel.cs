@@ -67,8 +67,8 @@ public class InventoryManagerViewModel : TabbedViewModel
     private void AddProduct(object parameter)
     {
         AddProductModel model = new AddProductModel();
-        model.AddProduct();
-        Window window = new AddProduct();
+        //model.AddProduct();
+        Window window = new AddProduct(model);
         window.DataContext = new AddProductModel();
         window.ShowDialog();
     }

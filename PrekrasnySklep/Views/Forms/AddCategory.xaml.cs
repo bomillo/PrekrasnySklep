@@ -28,5 +28,6 @@ namespace PrekrasnySklep.Views.Forms
         {
             Window.GetWindow(this).Close();
         }
+
     }
 }
