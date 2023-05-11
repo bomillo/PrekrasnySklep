@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PrekrasnySklep.ViewModels.Forms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,10 @@ namespace PrekrasnySklep.Views.Forms
     /// </summary>
     public partial class RemoveCategory : Window
     {
-        public RemoveCategory()
+        public RemoveCategory(RemoveCategoryModel viewModel)
         {
             InitializeComponent();
+            DataContext = viewModel;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {

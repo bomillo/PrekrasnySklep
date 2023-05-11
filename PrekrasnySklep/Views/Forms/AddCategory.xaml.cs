@@ -20,9 +20,10 @@ namespace PrekrasnySklep.Views.Forms
     /// </summary>
     public partial class AddCategory : Window
     {
-        public AddCategory()
+        public AddCategory(AddCategoryModel viewModel)
         {
             InitializeComponent();
+            DataContext = viewModel;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {

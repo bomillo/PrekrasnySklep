@@ -76,7 +76,7 @@ public class InventoryManagerViewModel : TabbedViewModel
     private void AddCategory(object parameter)
     {
         AddCategoryModel model = new AddCategoryModel();
-        Window window = new AddCategory();
+        Window window = new AddCategory(model);
         window.DataContext = new AddCategoryModel();
         window.ShowDialog();
     }
@@ -84,7 +84,7 @@ public class InventoryManagerViewModel : TabbedViewModel
     private void RemoveCategory(object parameter)
     {
         RemoveCategoryModel model = new RemoveCategoryModel();
-        Window window = new RemoveCategory();
+        Window window = new RemoveCategory(model);
         window.DataContext = new RemoveCategoryModel();
         window.ShowDialog();
     }

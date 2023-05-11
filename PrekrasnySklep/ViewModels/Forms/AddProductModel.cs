@@ -5,10 +5,12 @@ using PrekrasnySklep.Views.Forms;
 using PrekrasnySklep.Views.Login;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 
 namespace PrekrasnySklep.ViewModels.Forms
 {
@@ -19,6 +21,7 @@ namespace PrekrasnySklep.ViewModels.Forms
         private Category _category;
         private double _price;
         private int _stock;
+        private readonly CollectionView _categories;
         public string Name
         {
             get => _name;
@@ -39,11 +42,12 @@ namespace PrekrasnySklep.ViewModels.Forms
         }
         public Category Categories
         {
-            get => _category;
+            get { return _category; }
             set
             {
+                if (_category == value) return;
                 _category = value;
-                OnPropertyChanged();
+                OnPropertyChanged("Categories");
             }
         }
         public double Price
@@ -79,9 +83,13 @@ namespace PrekrasnySklep.ViewModels.Forms
 
         public AddProductModel(){
             AddProductCommand = new RelayCommand(AddProduct, CanExecute);
-
+            IList<Category> list = AppState.SharedContext.Categories.ToList();
+            _categories = new CollectionView(list);
         }
-
+        public CollectionView CategoryChoose
+        {
+            get { return _categories; }
+        }
         public void AddProduct(object sender)
         {
             product.ImagePath = null;
@@ -89,7 +97,9 @@ namespace PrekrasnySklep.ViewModels.Forms
             product.Name = Name;
             product.Price = Price;
             product.Description = Description;
-            product.Category = AppState.SharedContext.Categories.First(); //TODO- podmiandka na to co z listy
+            product.Category = Categories; 
+            var catId = AppState.SharedContext.Categories.FirstOrDefault(c => c.Name == Categories.Name); //TODO- podmiandka na to co z listy
+            product.CategoryId = catId.Id;
             product.Price = Price;
             product.Stock = Stock;
             var result = AppState.SharedContext.Products.Add(product);
@@ -98,19 +108,18 @@ namespace PrekrasnySklep.ViewModels.Forms
             {
                 Application.Current.Windows.OfType<AddProduct>().FirstOrDefault()!.Close();
             }
-            //Application.Current.Windows.OfType<AddProduct>().FirstOrDefault()!.Close();
-
-            /*product.Price = 10;
-            product.Name = "pies";
-            product.Category = AppState.SharedContext.Categories.First();
-            AppState.SharedContext.Products.Add(product);//product
-            AppState.SharedContext.SaveChanges();*/
         }
 
         private bool CanExecute(object sender)
         {
             return !string.IsNullOrWhiteSpace(_name) && !string.IsNullOrWhiteSpace(_description); //TODO- dopisac jeszcze pozostałe warunki
         }
+        private void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
 
 
 

@@ -28,7 +28,7 @@
 
 
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Name:" Margin="5" TextAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-        <ComboBox Name="Name" Grid.Row="1" Grid.Column="1" Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16"/>
+        <ComboBox Name="Name" Grid.Row="1" Grid.Column="1" Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ItemsSource="{Binding Path=CategoryChoose}" DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Path=Categories}"/>
 
         <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding ErrorMessage}" Foreground="Red" Margin="5" />
         <Grid Grid.Row="6" Grid.ColumnSpan="2">
@@ -37,7 +37,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Click="Button_Click" Content="Cancel" Margin="5" />
-            <Button Grid.Column="1" Command="{Binding AddCategoryCommand}" Content="Remove Current Category" Margin="5" />
+            <Button Grid.Column="1" Command="{Binding RemoveCategoryCommand}" Content="Remove Current Category" Margin="5" />
 
         </Grid>
     </Grid>
