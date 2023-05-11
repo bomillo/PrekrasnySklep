@@ -37,7 +37,7 @@ namespace PrekrasnySklep.ViewModels.Forms
                 OnPropertyChanged();
             }
         }
-        public Category category
+        public Category Categories
         {
             get => _category;
             set
@@ -85,15 +85,19 @@ namespace PrekrasnySklep.ViewModels.Forms
         public void AddProduct(object sender)
         {
             product.ImagePath = null;
-            product.CategoryId = 1;
+            
             product.Name = Name;
             product.Price = Price;
             product.Description = Description;
             product.Category = AppState.SharedContext.Categories.First(); //TODO- podmiandka na to co z listy
             product.Price = Price;
             product.Stock = Stock;
-            AppState.SharedContext.Products.Add(product);
+            var result = AppState.SharedContext.Products.Add(product);
             AppState.SharedContext.SaveChanges();
+            if(result is not null)
+            {
+                Application.Current.Windows.OfType<AddProduct>().FirstOrDefault()!.Close();
+            }
             //Application.Current.Windows.OfType<AddProduct>().FirstOrDefault()!.Close();
 
             /*product.Price = 10;

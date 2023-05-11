@@ -38,7 +38,8 @@
         <TextBox Name="Description" Grid.Row="2" Grid.Column="1" Margin="5"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
 
         <TextBlock Grid.Row="3" Grid.Column="0" Text="Category:" Margin="5" TextAlignment="Center" VerticalAlignment="Center"/>
-        <ListBox Name="Category" Grid.Row="3" Grid.Column="1" Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <ComboBox Name="Category" Grid.Row="3" Grid.Column="1" Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+        </ComboBox>
         <Grid Grid.Row="4" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

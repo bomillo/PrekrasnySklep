@@ -32,13 +32,13 @@
 
 
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Name:" Margin="5" TextAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox Name="Name" Grid.Row="1" Grid.Column="1" Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16"/>
+        <TextBox Name="Name" Grid.Row="1" Grid.Column="1" Margin="5" HorizontalContentAlignment="Center" Text="{Binding Name}" VerticalContentAlignment="Center" FontSize="16"/>
 
         <TextBlock Grid.Row="2" Grid.Column="0" Text="Description:" Margin="5" TextAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox Name="Description" Grid.Row="2" Grid.Column="1" Margin="5"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+        <TextBox Name="Description" Grid.Row="2" Grid.Column="1" Margin="5" Text="{Binding Description}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
 
         <TextBlock Grid.Row="3" Grid.Column="0" Text="Category:" Margin="5" TextAlignment="Center" VerticalAlignment="Center"/>
-        <ComboBox Name="Category" Grid.Row="3" Grid.Column="1" Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <ComboBox Name="Category" Grid.Row="3" Grid.Column="1" Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ItemsSource="{Binding Categores}"/>
         <Grid Grid.Row="4" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -47,9 +47,9 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="Price:" Margin="5" TextAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox Name="Price" Margin="5" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox Name="Price" Margin="5" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Price}"/>
             <TextBlock Grid.Column="2" Text="Stock:" Margin="5" TextAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox Name="Stock" Margin="5" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox Name="Stock" Margin="5" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Stock}"/>
         </Grid>
 
         <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding ErrorMessage}" Foreground="Red" Margin="5" />
