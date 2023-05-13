@@ -40,4 +40,10 @@ public sealed class ProductService
         }
         return valid;
     }
+
+    public List<Product> GetAvailableProducts()
+    {
+        return context.Products.Where(x => x.Stock > 0).ToList();
+    }
+
 }

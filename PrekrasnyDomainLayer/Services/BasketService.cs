@@ -77,6 +77,18 @@ public sealed class BasketService
         }
     }
 
+    public void AdjustBasketQuantity(Product product, int quantity)
+    {
+        if(quantity < 0)
+        {
+            RemoveFromBasket(product, -1 * quantity);
+        }
+        else if(quantity > 0)
+        {
+            AddToBasket(product, quantity);
+        }
+    }
+
     public void ClearBasket()
     {
         if (AppState.CurrentUser is null)

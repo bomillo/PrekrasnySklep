@@ -116,7 +116,10 @@ public class TabbedWindowViewModel : ViewModelBase
     }
 
     public void SetDataContext(object sender, SelectionChangedEventArgs e) {
-        currentTabbedViewModel = e.AddedItems[0] as TabbedViewModel;
+        if(e.AddedItems.Count > 0 && e.AddedItems[0] is TabbedViewModel)
+        {
+            currentTabbedViewModel = e.AddedItems[0] as TabbedViewModel;
+        }
     }
 
     internal void GetDataContext(object sender, RoutedEventArgs e)
