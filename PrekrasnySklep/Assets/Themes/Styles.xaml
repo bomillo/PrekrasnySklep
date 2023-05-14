@@ -60,6 +60,9 @@
                         <Trigger Property="IsEnabled" Value="True">
                             <Setter Property="Cursor" Value="Hand"/>
                         </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource SecondaryBackground}"/>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

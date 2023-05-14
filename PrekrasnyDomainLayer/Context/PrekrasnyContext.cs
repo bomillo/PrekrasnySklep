@@ -81,8 +81,8 @@ namespace PrekrasnyDomainLayer.Context
 
             var category = Categories.Add(new Category { Name = "Category 1" }).Entity;
 
-            var product1 = Products.Add(new Product() { Name = "Product 1", Price = 10, Category = category }).Entity;
-            var product2 = Products.Add(new Product() { Name = "Product 2", Price = 20, Category = category }).Entity;
+            var product1 = Products.Add(new Product() { Name = "Product 1", Price = 10, Category = category, Stock = 10 }).Entity;
+            var product2 = Products.Add(new Product() { Name = "Product 2", Price = 20, Category = category, Stock = 5 }).Entity;
 
             var order = Orders.Add(new Order() { User = cso, Status = OrderStatus.Ordered, Items = new List<OrderItem> { new OrderItem() { Product = product1, Quantity = 2 } , new OrderItem() { Product = product2, Quantity = 1 } } });
 
