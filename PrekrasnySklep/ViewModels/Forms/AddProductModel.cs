@@ -14,9 +14,23 @@ using System.Windows.Data;
 
 namespace PrekrasnySklep.ViewModels.Forms
 {
+    public class CategoryEntry
+    {
+        public string NameCategory { get; set; }
+
+        public CategoryEntry(string name)
+        {
+            NameCategory = name;
+        }
+
+        public override string ToString()
+        {
+            return NameCategory;
+        }
+    }
     public class AddProductModel : ViewModelBase
     {
-        private string _name;
+        private string _name { get; set; }
         private string _description;
         private Category _category;
         private double _price;
@@ -47,7 +61,7 @@ namespace PrekrasnySklep.ViewModels.Forms
             {
                 if (_category == value) return;
                 _category = value;
-                OnPropertyChanged("Categories");
+                OnPropertyChanged();
             }
         }
         public double Price
@@ -78,6 +92,7 @@ namespace PrekrasnySklep.ViewModels.Forms
                 OnPropertyChanged();
             }
         }
+        
         public RelayCommand AddProductCommand { get; }
         Product product = new Product();
 
