@@ -32,13 +32,13 @@
 
 
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Name:" Margin="5" TextAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox Name="Name" Grid.Row="1" Grid.Column="1" Margin="5" HorizontalContentAlignment="Center" Text="{Binding Name}" VerticalContentAlignment="Center" FontSize="16"/>
+        <TextBox Name="Name" Grid.Row="1" Grid.Column="1" Margin="5" HorizontalContentAlignment="Center" Text="{Binding Name ,UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" FontSize="16"/>
 
         <TextBlock Grid.Row="2" Grid.Column="0" Text="Description:" Margin="5" TextAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox Name="Description" Grid.Row="2" Grid.Column="1" Margin="5" Text="{Binding Description}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+        <TextBox Name="Description" Grid.Row="2" Grid.Column="1" Margin="5" Text="{Binding Description ,UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
 
         <TextBlock Grid.Row="3" Grid.Column="0" Text="Category:" Margin="5" TextAlignment="Center" VerticalAlignment="Center"/>
-        <ComboBox  Grid.Row="3" Grid.Column="1" Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ItemsSource="{Binding Path=CategoryChoose}" DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Categories}"/>
+        <ComboBox  Grid.Row="3" Grid.Column="1" Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ItemsSource="{Binding Path=CategoryChoose}" DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding Categories }"/>
         <Grid Grid.Row="4" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

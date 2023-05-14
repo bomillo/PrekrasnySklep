@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PrekrasnySklep.Views.Forms
 {
     /// <summary>
-    /// Logika interakcji dla klasy EditProduct.xaml
+    /// Logika interakcji dla klasy DeleteProduct.xaml
     /// </summary>
-    public partial class EditProduct : Window
+    public partial class DeleteProduct : Window
     {
-        public EditProduct(EditProductModel viewModel)
+        public DeleteProduct(DeleteProductModel viewModel)
         {
             InitializeComponent();
             DataContext = viewModel;

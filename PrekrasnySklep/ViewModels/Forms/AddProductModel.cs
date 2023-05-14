@@ -32,7 +32,7 @@ namespace PrekrasnySklep.ViewModels.Forms
     {
         private string _name { get; set; }
         private string _description;
-        private Category _category;
+        private int _category;
         private double _price;
         private int _stock;
         private readonly CollectionView _categories;
@@ -54,7 +54,7 @@ namespace PrekrasnySklep.ViewModels.Forms
                 OnPropertyChanged();
             }
         }
-        public Category Categories
+        public int Categories
         {
             get { return _category; }
             set
@@ -112,9 +112,7 @@ namespace PrekrasnySklep.ViewModels.Forms
             product.Name = Name;
             product.Price = Price;
             product.Description = Description;
-            product.Category = Categories; 
-            var catId = AppState.SharedContext.Categories.FirstOrDefault(c => c.Name == Categories.Name); //TODO- podmiandka na to co z listy
-            product.CategoryId = catId.Id;
+            product.CategoryId = _category;
             product.Price = Price;
             product.Stock = Stock;
             var result = AppState.SharedContext.Products.Add(product);
@@ -127,7 +125,7 @@ namespace PrekrasnySklep.ViewModels.Forms
 
         private bool CanExecute(object sender)
         {
-            return !string.IsNullOrWhiteSpace(_name) && !string.IsNullOrWhiteSpace(_description); //TODO- dopisac jeszcze pozostałe warunki
+            return !string.IsNullOrWhiteSpace(_name) && !string.IsNullOrWhiteSpace(_description) && _category != 0 ; //TODO- dopisac jeszcze pozostałe warunki
         }
         private void OnPropertyChanged(string propertyName)
         {

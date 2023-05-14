@@ -32,8 +32,15 @@
             </ListView.View>
         </ListView>
         <Button Content="Add Product" Command="{Binding AddProductCommand}" Margin="5,5,10,10" Grid.Column="1" Grid.Row="0"/>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Button Content="Edit Product" Command="{Binding EditProductCommand}" Margin="5,5,10,10" Grid.Row="0"/>
+            <Button Content="Delete Product" Command="{Binding DeleteProductCommand}" Margin="5,5,10,10" Grid.Row="1"/>
+        </Grid>
         <Button Content="Add Category" Command="{Binding AddCategoryCommand}" Margin="5,5,10,10" Grid.Column="1" Grid.Row="1"/>
-        <Button Content="Edit Product" Command="{Binding EditProductCommand}" Margin="5,5,10,10" Grid.Column="2" Grid.Row="0"/>
         <Button Content="Remove Category" Command="{Binding RemoveCategoryCommand}" Margin="5,5,10,10" Grid.Column="2" Grid.Row="1"/>
     </Grid>
 </Page>

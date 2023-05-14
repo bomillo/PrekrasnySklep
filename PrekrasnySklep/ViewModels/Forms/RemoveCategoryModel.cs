@@ -10,28 +10,41 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows;
+using Microsoft.EntityFrameworkCore;
+using PrekrasnyDomainLayer.Services;
 
 namespace PrekrasnySklep.ViewModels.Forms
 {
     public class RemoveCategoryModel : ViewModelBase
     {
-        private Category _category;
+        private int _category;
         private readonly CollectionView _categories;
-        public Category Categories
+        public int Categories
         {
             get { return _category; }
             set
             {
                 if (_category == value) return;
-                var catId = AppState.SharedContext.Categories.FirstOrDefault(c => c.Name == _category.Name);
                 _category = value;
-                OnPropertyChanged("Categories");
+                OnPropertyChanged();
+            }
+        }
+        private string _errorMessage;
+        public string ErrorMessage
+        {
+            get => _errorMessage;
+            set
+            {
+                _errorMessage = value;
+                OnPropertyChanged();
             }
         }
         public RelayCommand RemoveCategoryCommand { get; }
         Category category = new Category();
+        private readonly CategoryService _categoryService;
         public RemoveCategoryModel()
         {
+            _categoryService = new CategoryService();
             RemoveCategoryCommand = new RelayCommand(RemoveCategory, CanExecute);
             IList<Category> list = AppState.SharedContext.Categories.ToList();
             _categories = new CollectionView(list);
@@ -42,17 +55,36 @@ namespace PrekrasnySklep.ViewModels.Forms
         }
         public void RemoveCategory(object sender)
         {
-            category.Name = (string)sender;
+
+            Category category = AppState.SharedContext.Categories.FirstOrDefault(c => c.Id == _category);
+            if(_categoryService.RemoveCategory(category))
+            {
+                Application.Current.Windows.OfType<RemoveCategory>().FirstOrDefault()!.Close();
+            }
+            else
+            {
+                ErrorMessage = "Category has products assigned to it";
+                OnPropertyChanged();
+            }
+            
+            /*var products = AppState.SharedContext.Products.Where(p => p.CategoryId == _category).ToList();
+            if (products is not null)
+            {
+                AppState.SharedContext.Products.RemoveRange(products);
+            }
             var result = AppState.SharedContext.Categories.Remove(category);
             AppState.SharedContext.SaveChanges();
+            
             if (result is not null)
             {
                 Application.Current.Windows.OfType<RemoveCategory>().FirstOrDefault()!.Close();
             }
+            */
+            
         }
         private bool CanExecute(object sender)
         {
-            return false; //TODO- warunek na wybranie kategorii
+            return _category!=0 ; //TODO- warunek na wybranie kategorii
         }
         private void OnPropertyChanged(string propertyName)
         {

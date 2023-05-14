@@ -27,6 +27,7 @@ public class InventoryManagerViewModel : TabbedViewModel
     public RelayCommand AddCategoryCommand { get; }
     public RelayCommand RemoveCategoryCommand { get; }
     public RelayCommand EditProductCommand { get; }
+    public RelayCommand DeleteProductCommand { get; }
 
     public InventoryManagerViewModel() : base(title: "Inventory Manager") {
         _productService = new ProductService();
@@ -36,6 +37,7 @@ public class InventoryManagerViewModel : TabbedViewModel
         AddCategoryCommand = new RelayCommand(AddCategory);
         RemoveCategoryCommand = new RelayCommand(RemoveCategory);
         EditProductCommand = new RelayCommand(Edit,CanEdit);
+        DeleteProductCommand = new RelayCommand(DeleteProduct, CanEdit);
 
         SelectedProduct = null!;
         Products = new ObservableCollection<Product>(AppState.SharedContext.Products.Include(p => p.Category).ToList());
@@ -91,12 +93,19 @@ public class InventoryManagerViewModel : TabbedViewModel
 
     private void Edit(object parameter)
     {
-        EditProductModel model = new EditProductModel();
-        Window window = new EditProduct();
-        window.DataContext = new EditProductModel();
+        EditProductModel model = new EditProductModel(SelectedProduct);
+        Window window = new EditProduct(model);
+        window.DataContext = model;
         window.ShowDialog();
        
         
+    }
+    private void DeleteProduct(object parameter)
+    {
+        DeleteProductModel model = new DeleteProductModel(SelectedProduct);
+        Window window = new DeleteProduct(model);
+        window.DataContext = model;
+        window.ShowDialog();
     }
 
     private bool CanEdit(object parameter) 

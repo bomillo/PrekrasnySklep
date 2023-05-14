@@ -4,11 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PrekrasnySklep.Views.Forms"
-                mc:Ignorable="d"
+        mc:Ignorable="d"
         WindowStyle="None"
         Background="{DynamicResource PrimaryBackground}"
         Height="400" Width="800"
-        Title="AddProduct">
+        Title="EditProduct">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="36" />
@@ -32,14 +32,13 @@
 
 
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Name:" Margin="5" TextAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox Name="Name" Grid.Row="1" Grid.Column="1" Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  />
+        <TextBox Name="Name" Grid.Row="1" Grid.Column="1" Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding product.Name ,UpdateSourceTrigger=PropertyChanged}"  />
 
         <TextBlock Grid.Row="2" Grid.Column="0" Text="Description:" Margin="5" TextAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox Name="Description" Grid.Row="2" Grid.Column="1" Margin="5"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+        <TextBox Name="Description" Grid.Row="2" Grid.Column="1" Margin="5"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Text="{Binding product.Description ,UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock Grid.Row="3" Grid.Column="0" Text="Category:" Margin="5" TextAlignment="Center" VerticalAlignment="Center"/>
-        <ComboBox Name="Category" Grid.Row="3" Grid.Column="1" Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-        </ComboBox>
+        <ComboBox  Grid.Row="3" Grid.Column="1" Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ItemsSource="{Binding Path=CategoryChoose}" DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding Categories}"/>
         <Grid Grid.Row="4" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -48,9 +47,9 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="Price:" Margin="5" TextAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox Name="Price" Margin="5" Grid.Column="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+            <TextBox Name="Price" Margin="5" Grid.Column="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Text="{Binding product.Price ,UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Grid.Column="2" Text="Stock:" Margin="5" TextAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox Name="Stock" Margin="5" Grid.Column="3" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+            <TextBox Name="Stock" Margin="5" Grid.Column="3" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Text="{Binding product.Stock ,UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
 
         <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding ErrorMessage}" Foreground="Red" Margin="5" />
@@ -60,7 +59,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Click="Button_Click" Content="Cancel" Margin="5" />
-            <Button Grid.Column="1" Command="{Binding ChangePasswordCommand}" Content="Save" Margin="5" />
+            <Button Grid.Column="1" Command="{Binding EditProductCommand}" Content="Save" Margin="5" />
 
         </Grid>
     </Grid>
