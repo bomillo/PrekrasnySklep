@@ -59,21 +59,21 @@ namespace PrekrasnyDomainLayer.Context
         public void Seed()
         {
             UserService userService = new(this);
-            userService.RegisterNewUser("admin", "admin");
+            userService.RegisterNewUser("admin", "admin", PrekrasnyDomainLayer.Models.Enums.UserRole.Admin);
             var admin = Users.First(u => u.UserName == "admin");
             admin.UserRole = UserRole.Admin;
             admin.Theme = UserTheme.Dark;
             Users.Update(admin);
 
 
-            userService.RegisterNewUser("cso", "cso");
+            userService.RegisterNewUser("cso", "cso", PrekrasnyDomainLayer.Models.Enums.UserRole.CustomerService);
             var cso = Users.First(u => u.UserName == "cso");
             cso.UserRole = UserRole.CustomerService;
             cso.Theme = UserTheme.Dark;
             Users.Update(cso);
 
 
-            userService.RegisterNewUser("shp", "shp");
+            userService.RegisterNewUser("shp", "shp", PrekrasnyDomainLayer.Models.Enums.UserRole.Shipping);
             var shipping = Users.First(u => u.UserName == "shp");
             shipping.UserRole = UserRole.Shipping;
             shipping.Theme = UserTheme.Light;

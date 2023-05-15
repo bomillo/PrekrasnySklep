@@ -15,8 +15,8 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -31,13 +31,13 @@
 
 
         <TextBlock Grid.Row="1" Grid.Column="0" Text="UserName:" Margin="5" TextAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox Name="UserName" Grid.Row="1" Grid.Column="1" Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding user.Name ,UpdateSourceTrigger=PropertyChanged}"  />
+        <TextBox Name="UserName" Grid.Row="1" Grid.Column="1" Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding user.UserName ,UpdateSourceTrigger=PropertyChanged}"  />
 
         <TextBlock Grid.Row="2" Grid.Column="0" Text="Role:" Margin="5" TextAlignment="Center" VerticalAlignment="Center"/>
-        <ComboBox  Grid.Row="2" Grid.Column="1" Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ItemsSource="{Binding Path=CategoryChoose}" DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding Categories}"/>
+        <ComboBox  Grid.Row="2" Grid.Column="1" Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ItemsSource="{Binding Path=RoleChoose}" SelectedValue="{Binding UserRole}"/>
         
         <TextBlock Grid.Row="3" Grid.Column="0" Text="Description:" Margin="5" TextAlignment="Center" VerticalAlignment="Center"/>
-        <Button Grid.Row="3" Grid.Column="1" Margin="5" Content="Change Password" ></Button>
+        <Button Grid.Row="3" Grid.Column="1" Margin="5" Content="Change Password" Command="{Binding ChangePasswordCommand}" ></Button>
         
         <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding ErrorMessage}" Foreground="Red" Margin="5" />
         <Grid Grid.Row="5" Grid.ColumnSpan="2">

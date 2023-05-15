@@ -69,10 +69,11 @@ public class InventoryManagerViewModel : TabbedViewModel
     private void AddProduct(object parameter)
     {
         AddProductModel model = new AddProductModel();
-        //model.AddProduct();
         Window window = new AddProduct(model);
         window.DataContext = new AddProductModel();
         window.ShowDialog();
+        Products = new ObservableCollection<Product>(AppState.SharedContext.Products.Include(p => p.Category).ToList());
+        OnPropertyChanged();
     }
 
     private void AddCategory(object parameter)
@@ -97,6 +98,9 @@ public class InventoryManagerViewModel : TabbedViewModel
         Window window = new EditProduct(model);
         window.DataContext = model;
         window.ShowDialog();
+        Products = new ObservableCollection<Product>(AppState.SharedContext.Products.Include(p => p.Category).ToList());
+        OnPropertyChanged();
+
        
         
     }
@@ -106,6 +110,8 @@ public class InventoryManagerViewModel : TabbedViewModel
         Window window = new DeleteProduct(model);
         window.DataContext = model;
         window.ShowDialog();
+        Products = new ObservableCollection<Product>(AppState.SharedContext.Products.Include(p => p.Category).ToList());
+        OnPropertyChanged();
     }
 
     private bool CanEdit(object parameter) 

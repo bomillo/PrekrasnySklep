@@ -29,8 +29,8 @@ public class UserManagerViewModel : TabbedViewModel
     public UserManagerViewModel() : base(title: "Users Manager") { 
         _userService = new UserService();
         AddUserCommand = new RelayCommand(AddUser);
-        RemoveUserCommand = new RelayCommand(RemoveUser);//CanRemove
-        EditUserCommand = new RelayCommand(EditUser);//CanEdit
+        RemoveUserCommand = new RelayCommand(RemoveUser,CanRemove);//CanRemove
+        EditUserCommand = new RelayCommand(EditUser,CanEdit);//CanEdit
         SelectedUser = null!;
         Users = new ObservableCollection<User>(AppState.SharedContext.Users.ToList());
     }
@@ -60,13 +60,11 @@ public class UserManagerViewModel : TabbedViewModel
     private void AddUser(object parameter)
     {
         var window = new RegisterView(new Login.RegisterViewModel(_userService));
-        //Window win = new RegisterViewModel(_userService);
-
-        //window.Height = 300;
-        //window.Width = 400;
-        //window.Owner = Application.Current.MainWindow;
-        //window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-        //window.ShowDialog();
+        window.Owner = Application.Current.MainWindow;
+        window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+        window.ShowDialog();
+        Users = new ObservableCollection<User>(AppState.SharedContext.Users.ToList());
+        OnPropertyChanged();
     }
     private void EditUser(object parameter)
     {
@@ -74,6 +72,8 @@ public class UserManagerViewModel : TabbedViewModel
         Window window = new EditUser(model);
         window.DataContext= model;
         window.ShowDialog();
+        Users = new ObservableCollection<User>(AppState.SharedContext.Users.ToList());
+        OnPropertyChanged();
 
     }
     private void RemoveUser(object parameter)
@@ -82,6 +82,8 @@ public class UserManagerViewModel : TabbedViewModel
         Window window = new RemoveUser(model);
         window.DataContext = model;
         window.ShowDialog();
+        Users = new ObservableCollection<User>(AppState.SharedContext.Users.ToList());
+        OnPropertyChanged();
     }
     private bool CanEdit(object parameter)
     {
@@ -90,9 +92,9 @@ public class UserManagerViewModel : TabbedViewModel
     private bool CanRemove(object parameter)
     {
         if (selectedUser is not null && selectedUser.UserRole != UserRole.Admin)
-            return selectedUser is null;
+            return true;
         else
-            return selectedUser is not null;
+            return false;
     }
 
     public override void Sync()

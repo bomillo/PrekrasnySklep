@@ -44,18 +44,5 @@ namespace PrekrasnySklep.Views.Tabs
             gView.Columns[1].Width = workingWidth * col2;
             gView.Columns[2].Width = workingWidth * col3;
         }
-        private void cartList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            e.Handled = true;
-            var model = (UserManagerViewModel)DataContext;
-            try
-            {
-                model.SelectedUser = (User)e.AddedItems[0];
-            }
-            catch (Exception)
-            {
-                model.SelectedUser = null!;
-            }
-        }
     }
 }

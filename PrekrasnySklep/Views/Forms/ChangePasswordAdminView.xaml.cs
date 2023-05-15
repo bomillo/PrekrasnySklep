@@ -1,4 +1,5 @@
-﻿using PrekrasnySklep.ViewModels.Login;
+﻿using PrekrasnySklep.ViewModels.Forms;
+using PrekrasnySklep.ViewModels.Login;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,36 +14,25 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PrekrasnySklep.Views.Login
+namespace PrekrasnySklep.Views.Forms
 {
     /// <summary>
-    /// Interaction logic for ChangePasswordView.xaml
+    /// Logika interakcji dla klasy ChangePasswordAdminView.xaml
     /// </summary>
-    public partial class ChangePasswordView : Window
+    public partial class ChangePasswordAdminView : Window
     {
-        public ChangePasswordView(ChangePasswordViewModel viewModel)
+        public ChangePasswordAdminView(ChangePasswordAdminViewModel viewModel)
         {
             InitializeComponent();
             DataContext = viewModel;
         }
-
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Window.GetWindow(this).Close();
         }
-
-        private void OldPassword_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            if (DataContext is ChangePasswordViewModel viewModel && sender is PasswordBox passwordBox)
-            {
-                viewModel.OldPassword = passwordBox.Password;
-            }
-        }
-
         private void NewPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (DataContext is ChangePasswordViewModel viewModel && sender is PasswordBox passwordBox)
+            if (DataContext is ChangePasswordAdminViewModel viewModel && sender is PasswordBox passwordBox)
             {
                 viewModel.NewPassword = passwordBox.Password;
             }
@@ -50,7 +40,7 @@ namespace PrekrasnySklep.Views.Login
 
         private void RepeatPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (DataContext is ChangePasswordViewModel viewModel && sender is PasswordBox passwordBox)
+            if (DataContext is ChangePasswordAdminViewModel viewModel && sender is PasswordBox passwordBox)
             {
                 viewModel.RepeatPassword = passwordBox.Password;
             }
