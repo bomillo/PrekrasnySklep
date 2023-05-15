@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         WindowStyle="None"
         Background="{DynamicResource PrimaryBackground}"
-        Title="AboutWindow" MinHeight="300" MinWidth="300">
+        Title="AboutWindow" MinHeight="300" MinWidth="300" ResizeMode="CanResizeWithGrip" AllowsTransparency="True">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="64"/>

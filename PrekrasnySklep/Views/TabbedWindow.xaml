@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Initialized="Window_Initialized"
         Background="{DynamicResource PrimaryBackground}"
-        Title="EmptyWindow" MinHeight="670" MinWidth="670"  WindowStyle="None" MouseDown="HandleDrag">
+        Title="EmptyWindow" MinHeight="670" MinWidth="670"  WindowStyle="None" MouseDown="HandleDrag" ResizeMode="CanResizeWithGrip" AllowsTransparency="True">
     <Window.Resources>
         <converters:InvertBoolConverter x:Key="invertBool"/>
     </Window.Resources>
