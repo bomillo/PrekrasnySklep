@@ -27,16 +27,18 @@ public sealed class CategoryService
         context.SaveChanges();
     }
 
-    public void RemoveCategory(Category categoryToRemove) 
+    public bool RemoveCategory(Category categoryToRemove) 
     {
         var freshCategory = context.Categories.Include(c => c.Products).First(c => c.Id == categoryToRemove.Id);
         var hasProducts = freshCategory.Products.Any();
         if (hasProducts)
         {
-            throw new Exception(nameof(hasProducts));
+            //throw new Exception(nameof(hasProducts));
+            return false;
         }
 
         context.Categories.Remove(freshCategory);
         context.SaveChanges();
+        return true;
     }
 }

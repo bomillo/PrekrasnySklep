@@ -20,5 +20,5 @@ public sealed class Product
 
     public Category Category { get; set; }
 
-    internal Product() { }
+    public Product() { }
 }
