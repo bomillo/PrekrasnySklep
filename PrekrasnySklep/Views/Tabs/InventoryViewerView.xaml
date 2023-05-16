@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PrekrasnySklep.Views.Tabs" xmlns:tabs="clr-namespace:PrekrasnySklep.ViewModels.Tabs" d:DataContext="{d:DesignInstance Type=tabs:InventoryViewerViewModel}"
-      Title="DUpa romana" mc:Ignorable="d" MinHeight="300" MinWidth="500">
+        mc:Ignorable="d" MinHeight="300" MinWidth="500">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>

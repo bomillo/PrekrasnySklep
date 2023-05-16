@@ -4,17 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PrekrasnySklep.Views.Tabs" xmlns:tabs="clr-namespace:PrekrasnySklep.ViewModels.Tabs" d:DataContext="{d:DesignInstance Type=tabs:OrderViewerViewModel}"
-      Title="DUpa romana" mc:Ignorable="d" MinHeight="300" MinWidth="500">
+        mc:Ignorable="d" MinHeight="300" MinWidth="500">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="300"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <ListView Name="cartList" Margin="10,10,5,10" ItemsSource="{Binding Orders}" SizeChanged="CartSizeChanged"  Grid.RowSpan="2">
+        <ListView SelectionChanged="cartList_SelectionChanged" Name="cartList" Margin="10,10,5,10" ItemsSource="{Binding Orders}" SizeChanged="CartSizeChanged"  Grid.RowSpan="3">
             <ListView.View>
                 <GridView AllowsColumnReorder="False">
                     <GridViewColumn DisplayMemberBinding="{Binding Order.User.UserName}">
@@ -29,9 +29,21 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <TextBlock Text="{Binding SelectedOrder.Status}" FontSize="20" Grid.Column="1" VerticalAlignment="Center"/>
-        <StackPanel Grid.Column="1" Grid.Row="1"  Margin="5,5,10,10">
-            <!-- TODO add some? -->
+        <StackPanel Grid.Column="1" Grid.Row="0"  Margin="5,5,10,10">
+            <TextBlock Text="{Binding SelectedOrder.Status}" FontSize="20" Grid.Column="1" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding SelectedOrder.Recepient}" FontSize="20" Grid.Column="1" VerticalAlignment="Center"/>
         </StackPanel>
+        <ListView  Name="listView2" Margin="5,5,10,10" ItemsSource="{Binding SelectedOrder.Items}" SizeChanged="CartSizeChanged2" Grid.Column="2" Grid.Row="1">
+            <ListView.View>
+                <GridView AllowsColumnReorder="False">
+                    <GridViewColumn DisplayMemberBinding="{Binding Product.Name}">
+                        <GridViewColumnHeader SizeChanged="CartSizeChanged2" Content="Name"/>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Quantity}">
+                        <GridViewColumnHeader SizeChanged="CartSizeChanged2" Content="Qty."/>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Page>

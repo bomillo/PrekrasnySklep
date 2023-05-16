@@ -7,7 +7,7 @@
         xmlns:viewModels="clr-namespace:PrekrasnySklep.ViewModels.CashRegister"
         xmlns:view="clr-namespace:PrekrasnySklep.Views.CashRegister"
         xmlns:converters="clr-namespace:PrekrasnySklep.Converters"
-        Title="DUpa romana" mc:Ignorable="d" MinHeight="300" MinWidth="500">
+        mc:Ignorable="d" MinHeight="300" MinWidth="500">
     <Page.Resources>
         <converters:NumToPriceConverter x:Key="priceConverter"/>
     </Page.Resources>

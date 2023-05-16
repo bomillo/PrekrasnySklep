@@ -13,7 +13,7 @@
     <Window.Resources>
         <converters:InvertBoolConverter x:Key="invertBool"/>
     </Window.Resources>
-    <Grid Margin="0,-1,0,1">
+    <Grid Margin="5,4,5,6">
         <Grid.RowDefinitions>
             <RowDefinition Height="64"/>
             <RowDefinition Height="*"/>
