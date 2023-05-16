@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PrekrasnySklep.Views.Tabs"
+        xmlns:local="clr-namespace:PrekrasnySklep.Views.Tabs" 
         Title="DUpa romana" mc:Ignorable="d" MinHeight="300" MinWidth="500">
     <Grid>
         <Grid.RowDefinitions>
@@ -14,21 +14,30 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <ListView Name="cartList" Margin="10,10,5,10" d:ItemsSource="{d:SampleData ItemCount=5}" SizeChanged="CartSizeChanged" Grid.RowSpan="2">
+        <ListView Name="cartList" Margin="10,10,5,10" d:ItemsSource="{d:SampleData ItemCount=5}" ItemsSource="{Binding Users}" SizeChanged="CartSizeChanged" Grid.RowSpan="2" SelectedItem="{Binding SelectedUser}">
             <ListView.View>
                 <GridView >
-                    <GridViewColumn>
-                        <GridViewColumnHeader SizeChanged="CartSizeChanged" Content="Name"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding UserName}">
+                        <GridViewColumnHeader SizeChanged="CartSizeChanged" Content="UserName"/>
                     </GridViewColumn>
-                    <GridViewColumn>
-                        <GridViewColumnHeader SizeChanged="CartSizeChanged" Content="Price"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding UserRole}">
+                        <GridViewColumnHeader SizeChanged="CartSizeChanged" Content="UserRole"/>
                     </GridViewColumn>
-                    <GridViewColumn>
-                        <GridViewColumnHeader SizeChanged="CartSizeChanged" Content="Category"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding ItemsInBasket}">
+                        <GridViewColumnHeader SizeChanged="CartSizeChanged" Content="ItemsInBasket"/>
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Margin="5,5,10,10" Grid.Column="1" Grid.Row="1"> </Button>
+        <Grid Grid.Column="1" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Button Content="Register New User" Command="{Binding AddUserCommand}" Margin="5,5,10,10" Grid.Column="1" Grid.Row="0"/>
+            <Button Content="Edit Current User" Command="{Binding EditUserCommand}" Margin="5,5,10,10" Grid.Column="1" Grid.Row="1"/>
+            <Button Content="Remove User" Command="{Binding RemoveUserCommand}" Margin="5,5,10,10" Grid.Column="1" Grid.Row="2"/>
+        </Grid>
     </Grid>
 </Page>

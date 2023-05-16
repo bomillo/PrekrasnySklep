@@ -1,4 +1,5 @@
-﻿using PrekrasnySklep.ViewModels.Login;
+﻿using PrekrasnyDomainLayer.Models;
+using PrekrasnySklep.ViewModels.Login;
 using PrekrasnySklep.ViewModels.Tabs;
 using System;
 using System.Collections.Generic;

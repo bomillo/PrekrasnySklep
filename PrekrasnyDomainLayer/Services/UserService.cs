@@ -1,5 +1,6 @@
 ﻿using PrekrasnyDomainLayer.Context;
 using PrekrasnyDomainLayer.Models;
+using PrekrasnyDomainLayer.Models.Enums;
 using PrekrasnyDomainLayer.State;
 using System.Security.Cryptography;
 using System.Text;
@@ -18,19 +19,15 @@ public sealed class UserService
         this.context = context;
     }
 
-    public bool RegisterNewUserAndLogin(string userName, string password)
-    {
-        return RegisterNewUser(userName, password) && Login(userName, password);
-    }
 
-    public bool RegisterNewUser(string userName, string password)
+    public bool RegisterNewUser(string userName, string password, UserRole userRole)
     {
         if (context.Users.Any(u => u.UserName == userName))
         {
             return false;
         }
 
-        context.Users.Add(new User { UserName = userName, HashedPassword = HashPassword(password) });
+        context.Users.Add(new User { UserName = userName, HashedPassword = HashPassword(password), UserRole=userRole });
         context.SaveChanges();
         return true;
     }
