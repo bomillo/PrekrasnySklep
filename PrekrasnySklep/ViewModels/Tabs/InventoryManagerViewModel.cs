@@ -80,7 +80,7 @@ public class InventoryManagerViewModel : TabbedViewModel
     {
         AddCategoryModel model = new AddCategoryModel();
         Window window = new AddCategory(model);
-        window.DataContext = new AddCategoryModel();
+        window.DataContext = model;
         window.ShowDialog();
     }
 
@@ -88,7 +88,7 @@ public class InventoryManagerViewModel : TabbedViewModel
     {
         RemoveCategoryModel model = new RemoveCategoryModel();
         Window window = new RemoveCategory(model);
-        window.DataContext = new RemoveCategoryModel();
+        window.DataContext = model;
         window.ShowDialog();
     }
 
