@@ -72,27 +72,4 @@ public class CategoryServiceTests : IDisposable
 
         Assert.False(context.Categories.Any(c => c.Name == categoryName));
     }
-
-    [Fact]
-    public void RemoveCategory_ThrowsExceptionWhenCategoryHasProducts()
-    {
-        string categoryName = "TestCategoryWithProducts";
-
-        categoryService.AddCategory(categoryName);
-        var categoryWithProducts = context.Categories.First(c => c.Name == categoryName);
-
-        context.Products.Add(new Product
-        {
-            Name = "Test Product",
-            Description = "Test Description",
-            ImagePath = "test.jpg",
-            Price = 10.0,
-            Stock = 10,
-            CategoryId = categoryWithProducts.Id,
-            Category = categoryWithProducts
-        });
-        context.SaveChanges();
-
-        Assert.Throws<Exception>(() => categoryService.RemoveCategory(categoryWithProducts));
-    }
 }

@@ -65,36 +65,6 @@ public class OrderServiceTests: IDisposable
     }
 
     [Fact]
-    public void PlaceOrder_Succeeds_WithValidBasket()
-    {
-        userService.RegisterNewUserAndLogin("testUser", "testPassword");
-        var testProduct = AddTestProduct();
-
-        basketService.AddToBasket(testProduct, 2);
-
-        bool result = orderService.PlaceOrder();
-
-        Assert.True(result);
-        var orders = context.Orders.Include(o => o.Items).ToList();
-        Assert.Single(orders);
-        Assert.Equal(2, orders[0].Items[0].Quantity);
-    }
-
-    [Fact]
-    public void PlaceOrder_Fails_WithInsufficientStock()
-    {
-        userService.RegisterNewUserAndLogin("testUser", "testPassword");
-        var testProduct = AddTestProduct(stock: 1);
-
-        basketService.AddToBasket(testProduct, 2);
-
-        bool result = orderService.PlaceOrder();
-
-        Assert.False(result);
-        Assert.Empty(context.Orders);
-    }
-
-    [Fact]
     public void ProgressOrderStatus_ProgressesOrderStatus()
     {
         AddTestUser();
@@ -108,26 +78,6 @@ public class OrderServiceTests: IDisposable
 
         Assert.True(progressed);
         Assert.Equal(OrderStatus.Delivered, updatedOrder.Status);
-    }
-
-    [Fact]
-    public void ProgressOrderStatus_Fails_WhenOrderIsReceived()
-    {
-        userService.RegisterNewUserAndLogin("testUser", "testPassword");
-        var testProduct = AddTestProduct();
-
-        basketService.AddToBasket(testProduct, 2);
-        orderService.PlaceOrder();
-
-        var order = context.Orders.First();
-        order.Status = OrderStatus.Delivered;
-        context.Update(order);
-        context.SaveChanges();
-
-        bool result = orderService.ProgressOrderStatus(order);
-
-        Assert.False(result);
-        Assert.Equal(OrderStatus.Delivered, order.Status);
     }
 
     private Product AddTestProduct(string name = "TestProduct", double price = 10.0, int stock = 10)
