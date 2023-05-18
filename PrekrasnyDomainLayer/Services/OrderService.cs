@@ -20,7 +20,7 @@ public sealed class OrderService
         productService = new ProductService(context);
     }
 
-    public bool PlaceOrder()
+    public bool PlaceOrder(string recepient = "")
     {
         if (AppState.CurrentUser is null)
         {
@@ -33,7 +33,7 @@ public sealed class OrderService
         }
 
 
-        var order = new Order() { Status = OrderStatus.Ordered, UserId = AppState.CurrentUser.Id };
+        var order = new Order() { Status = OrderStatus.Ordered, UserId = AppState.CurrentUser.Id, Recepient= recepient };
 
         context.Orders.Add(order);
         context.SaveChanges();
@@ -50,7 +50,7 @@ public sealed class OrderService
 
     public bool ProgressOrderStatus(Order order)
     {
-        if (order.Status == OrderStatus.Received)
+        if (order.Status == OrderStatus.Delivered)
         {
             return false;
         }

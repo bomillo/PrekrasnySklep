@@ -1,9 +1,8 @@
-﻿using PrekrasnySklep.ViewModels.Login;
-using PrekrasnySklep.ViewModels.Tabs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,21 +11,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PrekrasnySklep.Views.Tabs
+namespace PrekrasnySklep.Views.OrderDispatcher
 {
-    public partial class OrderDispatcher : Page
+    public partial class DispatchView : UserControl
     {
-        public OrderDispatcher()
+        public DispatchView()
         {
             InitializeComponent();
-        }
-
-        public OrderDispatcher(TabbedViewModel viewModel)
-        {
-            InitializeComponent();
-            DataContext = viewModel;
         }
     }
 }

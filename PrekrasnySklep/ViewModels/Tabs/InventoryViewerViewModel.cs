@@ -46,4 +46,10 @@ public class InventoryViewerViewModel : TabbedViewModel
             OnPropertyChanged();
         }
     }
+
+    public override void Sync()
+    {
+        base.Sync();
+        Products = new ObservableCollection<Product>(AppState.SharedContext.Products.Include(p => p.Category).ToList());
+    }
 }

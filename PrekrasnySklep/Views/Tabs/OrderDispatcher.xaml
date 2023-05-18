@@ -3,10 +3,24 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:view="clr-namespace:PrekrasnySklep.Views.OrderDispatcher"
+        xmlns:viewModels="clr-namespace:PrekrasnySklep.ViewModels.OrderDispatcher"
         xmlns:local="clr-namespace:PrekrasnySklep.Views.Tabs"
         mc:Ignorable="d" MinHeight="300" MinWidth="600">
     <Grid>
-        <Grid.RowDefinitions>
+        <ContentControl Content="{Binding CurrentPanel}"
+            HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+            Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="3">
+            <ContentControl.Resources>
+                <DataTemplate x:Name="AddToCart" DataType="{x:Type viewModels:DispatcherListViewModel}">
+                    <view:DispatcherListView DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate x:Name="CashButtonsPanel" DataType="{x:Type viewModels:DispatchViewModel}">
+                    <view:DispatchView DataContext="{Binding}"/>
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
+        <!--<Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="2*"/>
@@ -34,5 +48,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        -->
     </Grid>
 </Page>

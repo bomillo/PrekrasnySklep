@@ -1,5 +1,4 @@
-﻿using PrekrasnySklep.ViewModels.Login;
-using PrekrasnySklep.ViewModels.Tabs;
+﻿using PrekrasnySklep.ViewModels.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,19 +13,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PrekrasnySklep.Views.Tabs
+namespace PrekrasnySklep.Views.Forms
 {
-    public partial class OrderDispatcher : Page
+    /// <summary>
+    /// Logika interakcji dla klasy AddCategory.xaml
+    /// </summary>
+    public partial class Order : Window
     {
-        public OrderDispatcher()
-        {
-            InitializeComponent();
-        }
-
-        public OrderDispatcher(TabbedViewModel viewModel)
+        public Order(OrderModel viewModel)
         {
             InitializeComponent();
             DataContext = viewModel;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Window.GetWindow(this).Close();
         }
     }
 }

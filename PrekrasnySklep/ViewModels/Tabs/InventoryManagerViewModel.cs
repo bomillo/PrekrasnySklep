@@ -32,7 +32,6 @@ public class InventoryManagerViewModel : TabbedViewModel
     public InventoryManagerViewModel() : base(title: "Inventory Manager") {
         _productService = new ProductService();
 
-
         AddProductCommand = new RelayCommand(AddProduct);
         AddCategoryCommand = new RelayCommand(AddCategory);
         RemoveCategoryCommand = new RelayCommand(RemoveCategory);
@@ -100,10 +99,8 @@ public class InventoryManagerViewModel : TabbedViewModel
         window.ShowDialog();
         Products = new ObservableCollection<Product>(AppState.SharedContext.Products.Include(p => p.Category).ToList());
         OnPropertyChanged();
-
-       
-        
     }
+
     private void DeleteProduct(object parameter)
     {
         DeleteProductModel model = new DeleteProductModel(SelectedProduct);

@@ -55,6 +55,19 @@ public class OrderViewerViewModel : TabbedViewModel
             OnPropertyChanged();
         }
     }
+
+    public override void Sync()
+    {
+        base.Sync();
+        Orders = new ObservableCollection<DisplayOrder>(
+            AppState.SharedContext.Orders
+                .Include(o => o.User)
+                .Include(o => o.Items)
+                .ThenInclude(it => it.Product)
+                .Select(o => new DisplayOrder() { Order = o, TotalPrice = o.Items.Sum(it => it.Quantity * it.Product.Price) })
+                .ToList()
+        );
+    }
 }
 
 public class DisplayOrder {

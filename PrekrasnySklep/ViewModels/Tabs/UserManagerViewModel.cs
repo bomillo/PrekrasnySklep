@@ -99,6 +99,7 @@ public class UserManagerViewModel : TabbedViewModel
 
     public override void Sync()
     {
-
+        base.Sync();
+        Users = new ObservableCollection<User>(AppState.SharedContext.Users.ToList());
     }
 }

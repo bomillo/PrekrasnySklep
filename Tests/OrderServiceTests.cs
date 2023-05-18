@@ -107,25 +107,7 @@ public class OrderServiceTests: IDisposable
         var updatedOrder = context.Orders.Find(testOrder.Id);
 
         Assert.True(progressed);
-        Assert.Equal(OrderStatus.Packing, updatedOrder.Status);
-
-        progressed = orderService.ProgressOrderStatus(updatedOrder);
-        updatedOrder = context.Orders.Find(testOrder.Id);
-
-        Assert.True(progressed);
-        Assert.Equal(OrderStatus.Sent, updatedOrder.Status);
-
-        progressed = orderService.ProgressOrderStatus(updatedOrder);
-        updatedOrder = context.Orders.Find(testOrder.Id);
-
-        Assert.True(progressed);
-        Assert.Equal(OrderStatus.Received, updatedOrder.Status);
-
-        progressed = orderService.ProgressOrderStatus(updatedOrder);
-        updatedOrder = context.Orders.Find(testOrder.Id);
-
-        Assert.False(progressed);
-        Assert.Equal(OrderStatus.Received, updatedOrder.Status);
+        Assert.Equal(OrderStatus.Delivered, updatedOrder.Status);
     }
 
     [Fact]
@@ -138,14 +120,14 @@ public class OrderServiceTests: IDisposable
         orderService.PlaceOrder();
 
         var order = context.Orders.First();
-        order.Status = OrderStatus.Received;
+        order.Status = OrderStatus.Delivered;
         context.Update(order);
         context.SaveChanges();
 
         bool result = orderService.ProgressOrderStatus(order);
 
         Assert.False(result);
-        Assert.Equal(OrderStatus.Received, order.Status);
+        Assert.Equal(OrderStatus.Delivered, order.Status);
     }
 
     private Product AddTestProduct(string name = "TestProduct", double price = 10.0, int stock = 10)

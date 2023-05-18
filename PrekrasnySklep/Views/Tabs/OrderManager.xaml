@@ -35,7 +35,7 @@
             <TextBlock Text="{Binding SelectedOrder.Status}" FontSize="20" Grid.Column="1" VerticalAlignment="Center"/>
             <TextBlock Text="{Binding SelectedOrder.Recepient}" FontSize="20" Grid.Column="1" VerticalAlignment="Center"/>
         </StackPanel>
-        <ListView  Name="listView2" Margin="5,5,10,10" ItemsSource="{Binding SelectedOrder.Items}" SizeChanged="CartSizeChanged2" Grid.Column="2" Grid.Row="1">
+        <ListView  Name="listView2" Margin="5,5,10,5" ItemsSource="{Binding SelectedOrder.Items}" SizeChanged="CartSizeChanged2" Grid.Column="2" Grid.Row="1">
             <ListView.View>
                 <GridView AllowsColumnReorder="False">
                     <GridViewColumn DisplayMemberBinding="{Binding Product.Name}">
@@ -47,7 +47,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Grid.Column="1" Grid.Row="2" Margin="5,5,10,5"></Button>
-        <Button Grid.Column="1" Grid.Row="3" Margin="5,5,10,10"></Button>
+        <Button Command="{Binding ChangeStatusCommand}" Grid.Column="1" Grid.Row="2" Margin="5,5,10,5">Change status</Button>
+        <Button Command="{Binding RemoveCommand}" Grid.Column="1" Grid.Row="3" Margin="5,5,10,10">Remove</Button>
     </Grid>
 </Page>
