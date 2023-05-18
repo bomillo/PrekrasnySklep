@@ -1,16 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PrekrasnyDomainLayer.Models;
-using PrekrasnyDomainLayer.Services;
 using PrekrasnyDomainLayer.State;
 using PrekrasnySklep.Base;
-using PrekrasnySklep.ViewModels.CashRegister;
 using PrekrasnySklep.ViewModels.Tabs;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PrekrasnySklep.ViewModels.OrderDispatcher
 {
@@ -32,8 +26,8 @@ namespace PrekrasnySklep.ViewModels.OrderDispatcher
                     .Include(o => o.User)
                     .Include(o => o.Items)
                     .ThenInclude(it => it.Product)
-                    .Where(o=> o.Status == PrekrasnyDomainLayer.Models.Enums.OrderStatus.Ordered)
-                    .Where(o=> o.Recepient.Contains(search))
+                    .Where(o => o.Status == PrekrasnyDomainLayer.Models.Enums.OrderStatus.Ordered)
+                    .Where(o => o.Recepient.Contains(search))
                     .ToList();
         }
 
@@ -70,7 +64,7 @@ namespace PrekrasnySklep.ViewModels.OrderDispatcher
             set
             {
                 searchString = value;
-                LoadOrders(searchString??"");
+                LoadOrders(searchString ?? "");
                 OnPropertyChanged();
             }
         }

@@ -5,9 +5,6 @@ using System.Windows.Controls;
 
 namespace PrekrasnySklep.Views.Login
 {
-    /// <summary>
-    /// Interaction logic for LoginView.xaml
-    /// </summary>
     public partial class RegisterView : Window
     {
         public RegisterView(RegisterViewModel viewModel)

@@ -1,16 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PrekrasnyDomainLayer.Models;
+using PrekrasnyDomainLayer.Models.Enums;
 using PrekrasnyDomainLayer.State;
 using PrekrasnySklep.Base;
-using PrekrasnySklep.Views.Forms;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PrekrasnyDomainLayer.Models.Enums;
-
 using Order = PrekrasnyDomainLayer.Models.Order;
 
 namespace PrekrasnySklep.ViewModels.Tabs;
@@ -23,7 +16,8 @@ public class OrderManagerViewModel : TabbedViewModel
     public RelayCommand ChangeStatusCommand { get; }
     public RelayCommand RemoveCommand { get; }
 
-    public OrderManagerViewModel() : base(title: "Orders Manager") {
+    public OrderManagerViewModel() : base(title: "Orders Manager")
+    {
         SelectedOrder = null!;
 
         ChangeStatusCommand = new RelayCommand(ChangeStatus, _ => SelectedOrder is not null);
@@ -32,7 +26,8 @@ public class OrderManagerViewModel : TabbedViewModel
         LoadOrders();
     }
 
-    private void LoadOrders() {
+    private void LoadOrders()
+    {
         Orders = new ObservableCollection<DisplayOrder>(
                 AppState.SharedContext.Orders
                     .Include(o => o.User)
@@ -85,5 +80,5 @@ public class OrderManagerViewModel : TabbedViewModel
     {
         base.Sync();
         LoadOrders();
-        }
+    }
 }

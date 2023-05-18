@@ -5,13 +5,8 @@ using PrekrasnyDomainLayer.State;
 using PrekrasnySklep.Base;
 using PrekrasnySklep.ViewModels.Forms;
 using PrekrasnySklep.Views.Forms;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace PrekrasnySklep.ViewModels.Tabs;
@@ -29,13 +24,14 @@ public class InventoryManagerViewModel : TabbedViewModel
     public RelayCommand EditProductCommand { get; }
     public RelayCommand DeleteProductCommand { get; }
 
-    public InventoryManagerViewModel() : base(title: "Inventory Manager") {
+    public InventoryManagerViewModel() : base(title: "Inventory Manager")
+    {
         _productService = new ProductService();
 
         AddProductCommand = new RelayCommand(AddProduct);
         AddCategoryCommand = new RelayCommand(AddCategory);
         RemoveCategoryCommand = new RelayCommand(RemoveCategory);
-        EditProductCommand = new RelayCommand(Edit,CanEdit);
+        EditProductCommand = new RelayCommand(Edit, CanEdit);
         DeleteProductCommand = new RelayCommand(DeleteProduct, CanEdit);
 
         SelectedProduct = null!;
@@ -111,7 +107,7 @@ public class InventoryManagerViewModel : TabbedViewModel
         OnPropertyChanged();
     }
 
-    private bool CanEdit(object parameter) 
+    private bool CanEdit(object parameter)
     {
         return selectedProduct is not null;
     }

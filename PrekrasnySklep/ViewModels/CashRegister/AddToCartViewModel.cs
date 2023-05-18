@@ -3,20 +3,16 @@ using PrekrasnyDomainLayer.Services;
 using PrekrasnyDomainLayer.State;
 using PrekrasnySklep.Base;
 using PrekrasnySklep.ViewModels.Tabs;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PrekrasnySklep.ViewModels.CashRegister
 {
     internal class AddToCartViewModel : ViewModelBase
     {
         private ObservableCollection<Product> _products;
-        public ObservableCollection<Product> Products 
-        { 
+        public ObservableCollection<Product> Products
+        {
             get => _products;
             set
             {
@@ -44,10 +40,10 @@ namespace PrekrasnySklep.ViewModels.CashRegister
                 _selectedProduct = value;
                 OnPropertyChanged();
             }
-        } 
+        }
         public RelayCommand AddToCart { get; }
         public RelayCommand PreviousView { get; }
-        
+
 
         private readonly ProductService _productService;
         private readonly BasketService _basketService;
@@ -69,7 +65,7 @@ namespace PrekrasnySklep.ViewModels.CashRegister
         }
         private void AddProductToCart(object sender)
         {
-            
+
             _basketService.AddToBasket(SelectedProduct!, Quantity);
             _parent.Cart = _basketService.GetCurrentBasket();
             _parent.CurrentPanel = _previous;
@@ -77,7 +73,7 @@ namespace PrekrasnySklep.ViewModels.CashRegister
 
         private bool CanExecute(object sender)
         {
-            if(SelectedProduct is not null)
+            if (SelectedProduct is not null)
             {
                 var product = AppState.SharedContext.Products.First(x => x.Id == SelectedProduct.Id);
 
@@ -88,6 +84,6 @@ namespace PrekrasnySklep.ViewModels.CashRegister
             return false;
         }
 
-        
+
     }
 }

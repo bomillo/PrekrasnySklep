@@ -1,15 +1,7 @@
-﻿using PrekrasnyDomainLayer.Models;
-using PrekrasnyDomainLayer.Services;
-using PrekrasnyDomainLayer.State;
+﻿using PrekrasnyDomainLayer.Services;
 using PrekrasnySklep.Base;
-using PrekrasnySklep.Views.Forms;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Data;
 using Order = PrekrasnySklep.Views.Forms.Order;
 
 namespace PrekrasnySklep.ViewModels.Forms

@@ -1,11 +1,6 @@
 ﻿using PrekrasnyDomainLayer.Services;
 using PrekrasnySklep.Base;
 using PrekrasnySklep.ViewModels.Tabs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PrekrasnySklep.ViewModels.CashRegister
 {
@@ -26,7 +21,7 @@ namespace PrekrasnySklep.ViewModels.CashRegister
             ClearBasketCommand = new RelayCommand(ClearBasket);
             RemoveItemFromBasket = new RelayCommand(RemoveItem, CanRemove);
             AddQuantityCommand = new RelayCommand((_) => EditQuantity(+1), (_) => CanEditQuantity(+1));
-            RemoveQuantityCommand = new RelayCommand((_) => EditQuantity(-1),(_) => CanEditQuantity(-1));
+            RemoveQuantityCommand = new RelayCommand((_) => EditQuantity(-1), (_) => CanEditQuantity(-1));
         }
 
         public void OpenProductList(object sender)
@@ -44,7 +39,7 @@ namespace PrekrasnySklep.ViewModels.CashRegister
                 _parent.Cart = _basketService.GetCurrentBasket();
             }
         }
-        private void ClearBasket(object sender) 
+        private void ClearBasket(object sender)
         {
             _parent.SelectedBasketItem = null;
             _basketService.ClearBasket();

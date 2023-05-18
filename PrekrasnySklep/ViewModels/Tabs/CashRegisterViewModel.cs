@@ -1,16 +1,9 @@
 ﻿using PrekrasnyDomainLayer.Models;
 using PrekrasnyDomainLayer.Services;
-using PrekrasnyDomainLayer.State;
 using PrekrasnySklep.Base;
 using PrekrasnySklep.ViewModels.CashRegister;
 using PrekrasnySklep.ViewModels.Forms;
-using PrekrasnySklep.Views.Forms;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace PrekrasnySklep.ViewModels.Tabs;
@@ -19,7 +12,7 @@ public class CashRegisterViewModel : TabbedViewModel
 {
     private ViewModelBase _currentPanel;
     private List<BasketItem> _cart;
-    public List<BasketItem> Cart 
+    public List<BasketItem> Cart
     {
         get => _cart;
         set
@@ -56,10 +49,11 @@ public class CashRegisterViewModel : TabbedViewModel
         _basketService = new BasketService();
         Cart = _basketService.GetCurrentBasket();
         CurrentPanel = new CashButtonsPanelViewModel(this);
-        OrderCommand = new RelayCommand(Order, _ => Cart.Count!=0);
+        OrderCommand = new RelayCommand(Order, _ => Cart.Count != 0);
     }
 
-    public void Order(object sender) {
+    public void Order(object sender)
+    {
         OrderModel model = new OrderModel();
         Window window = new PrekrasnySklep.Views.Forms.Order(model);
         window.DataContext = model;
@@ -67,5 +61,5 @@ public class CashRegisterViewModel : TabbedViewModel
         Cart = new List<BasketItem>();
     }
 
-    public override void Sync() {}
+    public override void Sync() { }
 }

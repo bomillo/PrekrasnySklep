@@ -1,16 +1,11 @@
-﻿using PrekrasnyDomainLayer.Models;
-using PrekrasnyDomainLayer.Services;
+﻿using PrekrasnyDomainLayer.Services;
 using PrekrasnySklep.Base;
 using PrekrasnySklep.ViewModels.Tabs;
 using PrekrasnySklep.Views;
 using PrekrasnySklep.Views.Login;
 using System;
-using System.Security;
-using System.Threading.Channels;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Navigation;
 
 namespace PrekrasnySklep.ViewModels.Login;
 
@@ -87,7 +82,7 @@ public class LoginViewModel : ViewModelBase
             if (success)
             {
                 ErrorMessage = string.Empty;
-                
+
                 var a = Application.Current.MainWindow;
                 Application.Current.MainWindow = new TabbedWindow(new TabbedWindowViewModel());
                 Application.Current.MainWindow.Show();

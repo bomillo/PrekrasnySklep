@@ -1,16 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PrekrasnyDomainLayer.Models;
-using PrekrasnyDomainLayer.Services;
 using PrekrasnyDomainLayer.State;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Security.RightsManagement;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using static System.Formats.Asn1.AsnWriter;
 
 namespace PrekrasnySklep.ViewModels.Tabs;
 
@@ -25,7 +17,7 @@ public class OrderViewerViewModel : TabbedViewModel
 
         SelectedOrder = null!;
 
-        Orders = new  ObservableCollection<DisplayOrder>(
+        Orders = new ObservableCollection<DisplayOrder>(
             AppState.SharedContext.Orders
                 .Include(o => o.User)
                 .Include(o => o.Items)
@@ -70,7 +62,8 @@ public class OrderViewerViewModel : TabbedViewModel
     }
 }
 
-public class DisplayOrder {
+public class DisplayOrder
+{
     public Order Order { get; set; }
     public double TotalPrice { get; set; }
 }

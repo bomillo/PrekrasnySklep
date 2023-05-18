@@ -1,13 +1,8 @@
 ﻿using PrekrasnyDomainLayer.Models;
-using PrekrasnyDomainLayer.Services;
 using PrekrasnyDomainLayer.State;
 using PrekrasnySklep.Base;
 using PrekrasnySklep.ViewModels.Tabs;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PrekrasnySklep.ViewModels.OrderDispatcher
 {
@@ -29,7 +24,8 @@ namespace PrekrasnySklep.ViewModels.OrderDispatcher
             }
         }
 
-        public List<OrderItem> Items {
+        public List<OrderItem> Items
+        {
             get => order.Items;
         }
 
