@@ -1,40 +1,30 @@
 ﻿using PrekrasnyDomainLayer.Context;
-using PrekrasnyDomainLayer.Models;
 using PrekrasnyDomainLayer.Models.Enums;
 using PrekrasnyDomainLayer.Services;
 using PrekrasnySklep.ViewModels.Login;
 using PrekrasnySklep.Views.Login;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls.Primitives;
 
 namespace PrekrasnySklep
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
-
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
             StartApp();
         }
 
-        public void StartApp() {
+        public void StartApp()
+        {
             PrekrasnyContext.InitalizeSharedContext();
             var _userService = new UserService();
 
             LoginViewModel loginViewModel = new LoginViewModel(new UserService());
 
             LoginView loginView = new LoginView(loginViewModel);
-            
+
             MainWindow = new LoginViewFrame(loginView);
             MainWindow.Show();
         }

@@ -1,19 +1,9 @@
 ﻿using PrekrasnyDomainLayer.State;
-using PrekrasnySklep.ViewModels.Login;
 using PrekrasnySklep.ViewModels.Tabs;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PrekrasnySklep.Views
 {
@@ -31,24 +21,19 @@ namespace PrekrasnySklep.Views
                 this.DragMove();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void MaximizeWindow(object sender, RoutedEventArgs e)
         {
             Application.Current.MainWindow.WindowState = Application.Current.MainWindow.WindowState != WindowState.Maximized ? WindowState.Maximized : WindowState.Normal;
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void MinimizeWindow(object sender, RoutedEventArgs e)
         {
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void CloseApp(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
-        }
-
-        private void TabControl_Selected(object sender, RoutedEventArgs e)
-        {
-            
         }
 
         private void TabControl_Selected(object sender, SelectionChangedEventArgs e)

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         WindowStyle="None"
         Background="{DynamicResource PrimaryBackground}"
-        Title="Register" Height="400" Width="800">
+        Title="Register" Height="400" Width="800" ResizeMode="CanResizeWithGrip" AllowsTransparency="True">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
@@ -35,6 +35,6 @@
 
         <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding ErrorMessage}" Foreground="Red" Margin="5" />
         <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding RegisterCommand}" Content="Register" Margin="5" />
-        <Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Click="Button_Click" Content="Back" Margin="5" />
+        <Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Click="Close" Content="Back" Margin="5" />
     </Grid>
 </Window>

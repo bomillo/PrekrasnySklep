@@ -20,7 +20,7 @@ public sealed class UserService
     }
 
 
-    public bool RegisterNewUser(string userName, string password, UserRole userRole)
+    public bool RegisterNewUser(string userName, string password, UserRole userRole = UserRole.CustomerService)
     {
         if (context.Users.Any(u => u.UserName == userName))
         {

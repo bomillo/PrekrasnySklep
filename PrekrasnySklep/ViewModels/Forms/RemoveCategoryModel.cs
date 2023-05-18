@@ -1,17 +1,13 @@
 ﻿using PrekrasnyDomainLayer.Models;
+using PrekrasnyDomainLayer.Services;
 using PrekrasnyDomainLayer.State;
 using PrekrasnySklep.Base;
 using PrekrasnySklep.Views.Forms;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Data;
 using System.Windows;
-using Microsoft.EntityFrameworkCore;
-using PrekrasnyDomainLayer.Services;
+using System.Windows.Data;
 
 namespace PrekrasnySklep.ViewModels.Forms
 {
@@ -57,7 +53,7 @@ namespace PrekrasnySklep.ViewModels.Forms
         {
 
             Category category = AppState.SharedContext.Categories.FirstOrDefault(c => c.Id == _category);
-            if(_categoryService.RemoveCategory(category))
+            if (_categoryService.RemoveCategory(category))
             {
                 Application.Current.Windows.OfType<RemoveCategory>().FirstOrDefault()!.Close();
             }
@@ -66,7 +62,7 @@ namespace PrekrasnySklep.ViewModels.Forms
                 ErrorMessage = "Category has products assigned to it";
                 OnPropertyChanged();
             }
-            
+
             /*var products = AppState.SharedContext.Products.Where(p => p.CategoryId == _category).ToList();
             if (products is not null)
             {
@@ -80,11 +76,11 @@ namespace PrekrasnySklep.ViewModels.Forms
                 Application.Current.Windows.OfType<RemoveCategory>().FirstOrDefault()!.Close();
             }
             */
-            
+
         }
         private bool CanExecute(object sender)
         {
-            return _category!=0 ; //TODO- warunek na wybranie kategorii
+            return _category != 0; //TODO- warunek na wybranie kategorii
         }
         private void OnPropertyChanged(string propertyName)
         {

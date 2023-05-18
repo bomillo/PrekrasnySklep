@@ -2,13 +2,10 @@
 using PrekrasnyDomainLayer.State;
 using PrekrasnySklep.Base;
 using PrekrasnySklep.Views.Forms;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Data;
 using System.Windows;
+using System.Windows.Data;
 
 namespace PrekrasnySklep.ViewModels.Forms
 {
@@ -102,7 +99,7 @@ namespace PrekrasnySklep.ViewModels.Forms
         }
         private bool CanExecute(object sender)
         {
-            return !string.IsNullOrWhiteSpace(product.Name) && !string.IsNullOrWhiteSpace(product.Description) && _category!= 0; //TODO- dopisac jeszcze pozostałe warunki
+            return !string.IsNullOrWhiteSpace(product.Name) && !string.IsNullOrWhiteSpace(product.Description) && _category != 0; //TODO- dopisac jeszcze pozostałe warunki
         }
     }
 }

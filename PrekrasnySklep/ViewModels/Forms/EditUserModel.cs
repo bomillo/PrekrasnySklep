@@ -1,16 +1,10 @@
 ﻿using PrekrasnyDomainLayer.Models;
 using PrekrasnyDomainLayer.Models.Enums;
-using PrekrasnyDomainLayer.Services;
 using PrekrasnyDomainLayer.State;
 using PrekrasnySklep.Base;
 using PrekrasnySklep.Views.Forms;
-using PrekrasnySklep.Views.Login;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 
@@ -64,7 +58,7 @@ namespace PrekrasnySklep.ViewModels.Forms
         }
         public void EditUser(object sender)
         {
-            user.UserRole = _userRole??user.UserRole;
+            user.UserRole = _userRole ?? user.UserRole;
             var result = AppState.SharedContext.Users.Update(user);
             AppState.SharedContext.SaveChanges();
             if (result is not null)
@@ -82,7 +76,7 @@ namespace PrekrasnySklep.ViewModels.Forms
         }
         private bool CanExecute(object sender)
         {
-            return !string.IsNullOrWhiteSpace(user.UserName) ;
+            return !string.IsNullOrWhiteSpace(user.UserName);
         }
     }
 }

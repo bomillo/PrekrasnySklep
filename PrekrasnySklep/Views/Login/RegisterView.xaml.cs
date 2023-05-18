@@ -5,9 +5,6 @@ using System.Windows.Controls;
 
 namespace PrekrasnySklep.Views.Login
 {
-    /// <summary>
-    /// Interaction logic for LoginView.xaml
-    /// </summary>
     public partial class RegisterView : Window
     {
         public RegisterView(RegisterViewModel viewModel)
@@ -31,7 +28,7 @@ namespace PrekrasnySklep.Views.Login
                 viewModel.PasswordValidationChangedCommand.Execute(passwordBox);
             }
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Close(object sender, RoutedEventArgs e)
         {
             Window.GetWindow(this).Close();
         }

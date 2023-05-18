@@ -3,13 +3,14 @@ using System.Windows;
 
 namespace PrekrasnySklep.Views.Forms
 {
-    public partial class AddCategory : Window
+    public partial class Order : Window
     {
-        public AddCategory(AddCategoryModel viewModel)
+        public Order(OrderModel viewModel)
         {
             InitializeComponent();
             DataContext = viewModel;
         }
+
         private void Close(object sender, RoutedEventArgs e)
         {
             Window.GetWindow(this).Close();

@@ -1,36 +1,31 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PrekrasnyDomainLayer.Models;
+﻿using PrekrasnyDomainLayer.Models;
 using PrekrasnyDomainLayer.Models.Enums;
 using PrekrasnyDomainLayer.Services;
 using PrekrasnyDomainLayer.State;
 using PrekrasnySklep.Base;
 using PrekrasnySklep.ViewModels.Forms;
-using PrekrasnySklep.ViewModels.Login;
 using PrekrasnySklep.Views.Forms;
 using PrekrasnySklep.Views.Login;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace PrekrasnySklep.ViewModels.Tabs;
 
 public class UserManagerViewModel : TabbedViewModel
-{   
+{
     private readonly UserService _userService;
-    private ObservableCollection<User>  users;
+    private ObservableCollection<User> users;
     private User? selectedUser;
     public RelayCommand AddUserCommand { get; }
     public RelayCommand RemoveUserCommand { get; }
     public RelayCommand EditUserCommand { get; }
-    public UserManagerViewModel() : base(title: "Users Manager") { 
+    public UserManagerViewModel() : base(title: "Users Manager")
+    {
         _userService = new UserService();
         AddUserCommand = new RelayCommand(AddUser);
-        RemoveUserCommand = new RelayCommand(RemoveUser,CanRemove);//CanRemove
-        EditUserCommand = new RelayCommand(EditUser,CanEdit);//CanEdit
+        RemoveUserCommand = new RelayCommand(RemoveUser, CanRemove);//CanRemove
+        EditUserCommand = new RelayCommand(EditUser, CanEdit);//CanEdit
         SelectedUser = null!;
         Users = new ObservableCollection<User>(AppState.SharedContext.Users.ToList());
     }
@@ -70,7 +65,7 @@ public class UserManagerViewModel : TabbedViewModel
     {
         EditUserModel model = new EditUserModel(SelectedUser);
         Window window = new EditUser(model);
-        window.DataContext= model;
+        window.DataContext = model;
         window.ShowDialog();
         Users = new ObservableCollection<User>(AppState.SharedContext.Users.ToList());
         OnPropertyChanged();
@@ -99,6 +94,7 @@ public class UserManagerViewModel : TabbedViewModel
 
     public override void Sync()
     {
-
+        base.Sync();
+        Users = new ObservableCollection<User>(AppState.SharedContext.Users.ToList());
     }
 }

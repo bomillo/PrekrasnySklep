@@ -1,18 +1,12 @@
-﻿using PrekrasnyDomainLayer.Models;
-using PrekrasnyDomainLayer.Models.Enums;
+﻿using PrekrasnyDomainLayer.Models.Enums;
 using PrekrasnyDomainLayer.Services;
 using PrekrasnySklep.Base;
-using PrekrasnySklep.Views;
-using PrekrasnySklep.Views.Forms;
 using PrekrasnySklep.Views.Login;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Input;
 
 namespace PrekrasnySklep.ViewModels.Login;
 
@@ -154,7 +148,7 @@ public class RegisterViewModel : ViewModelBase
 
     private void Register(object parameter)
     {
-        var success = _userService.RegisterNewUser(Username, Password,_userRole);
+        var success = _userService.RegisterNewUser(Username, Password, _userRole);
 
         if (success)
         {
@@ -166,7 +160,8 @@ public class RegisterViewModel : ViewModelBase
         }
     }
 
-    private void GoBack(object parameter) {
+    private void GoBack(object parameter)
+    {
         LoginViewModel loginViewModel = new LoginViewModel(new UserService());
         LoginView registerView = new LoginView(loginViewModel);
         ((LoginViewFrame)Application.Current.MainWindow).frame.Navigate(registerView);

@@ -1,14 +1,8 @@
 ﻿using PrekrasnyDomainLayer.Services;
-using PrekrasnyDomainLayer.State;
 using PrekrasnySklep.Base;
 using PrekrasnySklep.Views.Login;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace PrekrasnySklep.ViewModels.Login
 {
@@ -17,14 +11,14 @@ namespace PrekrasnySklep.ViewModels.Login
         private string _oldPassword;
         private string _newPassword;
         private string _repeatPassword;
-        public string OldPassword 
-        { 
-            get => _oldPassword; 
+        public string OldPassword
+        {
+            get => _oldPassword;
             set
             {
                 _oldPassword = value;
                 OnPropertyChanged();
-            } 
+            }
         }
         public string NewPassword
         {
@@ -80,8 +74,8 @@ namespace PrekrasnySklep.ViewModels.Login
 
         private bool CanExecute(object sender)
         {
-            return !string.IsNullOrWhiteSpace(_oldPassword) && !string.IsNullOrWhiteSpace(_newPassword) 
-                   && _newPassword.Equals(_repeatPassword) && !_oldPassword.Equals(_newPassword); 
+            return !string.IsNullOrWhiteSpace(_oldPassword) && !string.IsNullOrWhiteSpace(_newPassword)
+                   && _newPassword.Equals(_repeatPassword) && !_oldPassword.Equals(_newPassword);
         }
 
     }

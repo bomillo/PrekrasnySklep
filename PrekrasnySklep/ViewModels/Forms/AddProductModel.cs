@@ -2,13 +2,9 @@
 using PrekrasnyDomainLayer.State;
 using PrekrasnySklep.Base;
 using PrekrasnySklep.Views.Forms;
-using PrekrasnySklep.Views.Login;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 
@@ -92,11 +88,12 @@ namespace PrekrasnySklep.ViewModels.Forms
                 OnPropertyChanged();
             }
         }
-        
+
         public RelayCommand AddProductCommand { get; }
         Product product = new Product();
 
-        public AddProductModel(){
+        public AddProductModel()
+        {
             AddProductCommand = new RelayCommand(AddProduct, CanExecute);
             IList<Category> list = AppState.SharedContext.Categories.ToList();
             _categories = new CollectionView(list);
@@ -108,7 +105,7 @@ namespace PrekrasnySklep.ViewModels.Forms
         public void AddProduct(object sender)
         {
             product.ImagePath = null;
-            
+
             product.Name = Name;
             product.Price = Price;
             product.Description = Description;
@@ -117,7 +114,7 @@ namespace PrekrasnySklep.ViewModels.Forms
             product.Stock = Stock;
             var result = AppState.SharedContext.Products.Add(product);
             AppState.SharedContext.SaveChanges();
-            if(result is not null)
+            if (result is not null)
             {
                 Application.Current.Windows.OfType<AddProduct>().FirstOrDefault()!.Close();
             }
@@ -125,7 +122,7 @@ namespace PrekrasnySklep.ViewModels.Forms
 
         private bool CanExecute(object sender)
         {
-            return !string.IsNullOrWhiteSpace(_name) && !string.IsNullOrWhiteSpace(_description) && _category != 0 ; //TODO- dopisac jeszcze pozostałe warunki
+            return !string.IsNullOrWhiteSpace(_name) && !string.IsNullOrWhiteSpace(_description) && _category != 0; //TODO- dopisac jeszcze pozostałe warunki
         }
         private void OnPropertyChanged(string propertyName)
         {

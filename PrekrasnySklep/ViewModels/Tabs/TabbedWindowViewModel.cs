@@ -1,23 +1,14 @@
-﻿using PrekrasnyDomainLayer.Models;
-using PrekrasnyDomainLayer.Models.Enums;
+﻿using PrekrasnyDomainLayer.Models.Enums;
 using PrekrasnyDomainLayer.Services;
 using PrekrasnyDomainLayer.State;
 using PrekrasnySklep.Base;
 using PrekrasnySklep.Views;
 using PrekrasnySklep.Views.Login;
-using PrekrasnySklep.Views.Tabs;
 using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Security;
-using System.Threading.Channels;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Navigation;
-using System.Windows.Controls.Primitives;
 
 namespace PrekrasnySklep.ViewModels.Tabs;
 
@@ -45,8 +36,8 @@ public class TabbedWindowViewModel : ViewModelBase
     public RelayCommand ChangePasswordCommand { get; }
 
     private bool _darkThemeChecked;
-    public bool DarkThemeChecked 
-    { 
+    public bool DarkThemeChecked
+    {
         get => _darkThemeChecked;
         set
         {
@@ -60,7 +51,7 @@ public class TabbedWindowViewModel : ViewModelBase
                 ChangeTheme(UserTheme.Light);
             }
             OnPropertyChanged();
-        } 
+        }
     }
     private bool _onInitFullScreen;
     public bool OnInitFullScreen
@@ -68,28 +59,28 @@ public class TabbedWindowViewModel : ViewModelBase
         get => _onInitFullScreen;
         set
         {
-            if(value !=  _onInitFullScreen)
+            if (value != _onInitFullScreen)
             {
                 _onInitFullScreen = value;
                 ChangeFullScreenSetting();
             }
-            
+
         }
     }
     public TabbedWindowViewModel()
     {
-        
+
         _userService = new UserService();
         AboutAppCommand = new RelayCommand(AboutApp);
         LogoutCommand = new RelayCommand(LogOut);
         ChangePasswordCommand = new RelayCommand(ChangePassword);
         OnInitFullScreen = AppState.CurrentUser!.OnInitFullScreen;
-        
+
         ((App)Application.Current).ChangeTheme(AppState.CurrentUser.Theme);
         DarkThemeChecked = AppState.CurrentUser.Theme == UserTheme.Dark;
-        foreach (var viewModelEntry in availableViewModels) 
+        foreach (var viewModelEntry in availableViewModels)
         {
-            if (((int)viewModelEntry.userRole & (int)AppState.CurrentUser!.UserRole) != 0) 
+            if (((int)viewModelEntry.userRole & (int)AppState.CurrentUser!.UserRole) != 0)
             {
                 PageViews.Add(viewModelEntry.vmFactory.Invoke());
             }
@@ -108,15 +99,17 @@ public class TabbedWindowViewModel : ViewModelBase
         }
     }
 
-    public void LogOut(object sender) {
+    public void LogOut(object sender)
+    {
         new UserService().Logout();
         var currWindow = Application.Current.MainWindow;
         ((App)Application.Current).StartApp();
         currWindow.Close();
     }
 
-    public void SetDataContext(object sender, SelectionChangedEventArgs e) {
-        if(e.AddedItems.Count > 0 && e.AddedItems[0] is TabbedViewModel)
+    public void SetDataContext(object sender, SelectionChangedEventArgs e)
+    {
+        if (e.AddedItems.Count > 0 && e.AddedItems[0] is TabbedViewModel)
         {
             currentTabbedViewModel = e.AddedItems[0] as TabbedViewModel;
         }

@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="PrekrasnySklep.Views.OrderDispatcher.DispatchView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PrekrasnySklep.Views.OrderDispatcher"
+             xmlns:converters="clr-namespace:PrekrasnySklep.Converters" xmlns:orderdispatcher="clr-namespace:PrekrasnySklep.ViewModels.OrderDispatcher" d:DataContext="{d:DesignInstance Type=orderdispatcher:DispatchViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:NumToPriceConverter x:Key="priceConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <ItemsControl Margin="10" Grid.Column="1" x:Name="tStack" ItemsSource="{Binding Items}" d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Vertical" HorizontalAlignment="Stretch"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                        <TextBlock Margin="10" FontWeight="ExtraBold" Text="{Binding Quantity}"/>
+                        <TextBlock Margin="10" Text="{Binding Product.Name}" TextWrapping="WrapWithOverflow"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Button Grid.Row="1" Grid.Column="1" Margin="13" Command="{Binding ChangeStatusCommand}">Mark as delivered</Button>
+    </Grid>
+</UserControl>

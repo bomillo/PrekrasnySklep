@@ -8,7 +8,7 @@
         WindowStyle="None"
         Background="{DynamicResource PrimaryBackground}"
         Height="400" Width="800"
-        Title="EditProduct">
+        Title="EditProduct" ResizeMode="CanResizeWithGrip" AllowsTransparency="True">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="36" />
@@ -26,7 +26,7 @@
 
         <Button Content="X" Margin="0,2,2,0" FontWeight="Bold" 
                 FontSize="13" HorizontalAlignment="Right" 
-                Width="36" Click="Button_Click"
+                Width="36" Click="Close"
                 Grid.Column="1" Grid.Row="0"
                 />
 
@@ -58,7 +58,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Click="Button_Click" Content="Cancel" Margin="5" />
+            <Button Grid.Column="0" Click="Close" Content="Cancel" Margin="5" />
             <Button Grid.Column="1" Command="{Binding EditProductCommand}" Content="Save" Margin="5" />
 
         </Grid>
