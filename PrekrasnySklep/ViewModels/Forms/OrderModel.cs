@@ -19,14 +19,14 @@ namespace PrekrasnySklep.ViewModels.Forms
             }
         }
 
-        public RelayCommand AddCategoryCommand { get; }
+        public RelayCommand PlaceOrderCommand { get; }
 
         public OrderModel()
         {
-            AddCategoryCommand = new RelayCommand(AddCategory, CanEdit);
+            PlaceOrderCommand = new RelayCommand(PlaceOrder, CanEdit);
         }
 
-        public void AddCategory(object sender)
+        public void PlaceOrder(object sender)
         {
             new OrderService().PlaceOrder(Name);
             Application.Current.Windows.OfType<Order>().FirstOrDefault()!.Close();

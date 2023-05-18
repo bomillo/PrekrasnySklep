@@ -8,13 +8,11 @@ namespace PrekrasnySklep.ViewModels.Tabs;
 
 public class OrderViewerViewModel : TabbedViewModel
 {
-
     private ObservableCollection<DisplayOrder> orders;
     private Order? selectedOrder;
 
     public OrderViewerViewModel() : base(title: "Orders Viewer")
     {
-
         SelectedOrder = null!;
 
         Orders = new ObservableCollection<DisplayOrder>(

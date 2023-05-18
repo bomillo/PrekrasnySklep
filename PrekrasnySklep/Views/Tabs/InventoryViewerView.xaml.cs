@@ -19,7 +19,7 @@ namespace PrekrasnySklep.Views.Tabs
             DataContext = viewModel;
         }
 
-        private void CartSizeChanged(object sender, SizeChangedEventArgs e)
+        private void ListSizeChanged(object sender, SizeChangedEventArgs e)
         {
             ListView listView = cartList;
             GridView gView = listView.View as GridView;
@@ -34,7 +34,7 @@ namespace PrekrasnySklep.Views.Tabs
             gView.Columns[2].Width = workingWidth * col3;
         }
 
-        private void cartList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             e.Handled = true;
             var model = (InventoryViewerViewModel)DataContext;

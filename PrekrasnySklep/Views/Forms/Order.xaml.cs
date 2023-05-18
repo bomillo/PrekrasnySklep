@@ -11,7 +11,7 @@ namespace PrekrasnySklep.Views.Forms
             DataContext = viewModel;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Close(object sender, RoutedEventArgs e)
         {
             Window.GetWindow(this).Close();
         }

@@ -16,17 +16,17 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <ListView SelectionChanged="cartList_SelectionChanged" Name="listView" Grid.Row="1" Margin="13,11,13,1" Grid.Column="1" ItemsSource="{Binding Orders}" d:ItemsSource="{d:SampleData ItemCount=5}" SizeChanged="CartSizeChanged">
+        <ListView SelectionChanged="SelectionChanged" Name="listView" Grid.Row="1" Margin="13,11,13,1" Grid.Column="1" ItemsSource="{Binding Orders}" d:ItemsSource="{d:SampleData ItemCount=5}" SizeChanged="ListSizeChanged">
             <ListView.View>
                 <GridView AllowsColumnReorder="False">
                     <GridViewColumn DisplayMemberBinding="{Binding Recepient}">
-                        <GridViewColumnHeader SizeChanged="CartSizeChanged" Content="Name"/>
+                        <GridViewColumnHeader SizeChanged="ListSizeChanged" Content="Name"/>
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
         <TextBox Grid.Column="1" Margin="13,13,13,2" Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged}"  TextAlignment="Center" VerticalContentAlignment="Center"></TextBox>
 
-        <Button Grid.Row="2" Grid.Column="1" Margin="13" Command="{Binding AddToCart}">View details</Button>
+        <Button Grid.Row="2" Grid.Column="1" Margin="13" Command="{Binding GoToDetailsCommand}">View details</Button>
     </Grid>
 </UserControl>

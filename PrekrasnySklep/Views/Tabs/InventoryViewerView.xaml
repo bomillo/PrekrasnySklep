@@ -14,17 +14,17 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
-        <ListView SelectionChanged="cartList_SelectionChanged"  Name="cartList" Margin="10,10,5,10" ItemsSource="{Binding Products}" SizeChanged="CartSizeChanged" Grid.RowSpan="2">
+        <ListView SelectionChanged="SelectionChanged"  Name="cartList" Margin="10,10,5,10" ItemsSource="{Binding Products}" SizeChanged="ListSizeChanged" Grid.RowSpan="2">
             <ListView.View>
                 <GridView AllowsColumnReorder="False">
                     <GridViewColumn DisplayMemberBinding="{Binding Name}">
-                        <GridViewColumnHeader SizeChanged="CartSizeChanged" Content="Name"/>
+                        <GridViewColumnHeader SizeChanged="ListSizeChanged" Content="Name"/>
                     </GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Price}">
-                        <GridViewColumnHeader SizeChanged="CartSizeChanged" Content="Price"/>
+                        <GridViewColumnHeader SizeChanged="ListSizeChanged" Content="Price"/>
                     </GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Category.Name}">
-                        <GridViewColumnHeader SizeChanged="CartSizeChanged" Content="Category"/>
+                        <GridViewColumnHeader SizeChanged="ListSizeChanged" Content="Category"/>
                     </GridViewColumn>
                 </GridView>
             </ListView.View>

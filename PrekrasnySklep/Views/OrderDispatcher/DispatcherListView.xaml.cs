@@ -13,7 +13,7 @@ namespace PrekrasnySklep.Views.OrderDispatcher
             InitializeComponent();
         }
 
-        private void CartSizeChanged(object sender, SizeChangedEventArgs e)
+        private void ListSizeChanged(object sender, SizeChangedEventArgs e)
         {
             ListView list = listView;
             GridView gView = list.View as GridView;
@@ -22,7 +22,7 @@ namespace PrekrasnySklep.Views.OrderDispatcher
             gView.Columns[0].Width = workingWidth;
         }
 
-        private void cartList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             e.Handled = true;
             DispatcherListViewModel model = (DispatcherListViewModel)DataContext;

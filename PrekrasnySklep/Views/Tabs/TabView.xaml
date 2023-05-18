@@ -6,6 +6,6 @@
         xmlns:local="clr-namespace:PrekrasnySklep.Views.Tabs"
         mc:Ignorable="d">
     <Grid>
-        <TextBlock Text="TEST2"/>
+        <TextBlock Text=" "/>
     </Grid>
 </Page>

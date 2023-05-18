@@ -48,9 +48,9 @@
             </MenuItem>
 
         </Menu>
-        <Button Content="X" Margin="0,2,2,0" FontWeight="Bold" FontSize="15" HorizontalAlignment="Right" Width="60" Click="Button_Click_2"/>
-        <Button Content="MAX" Margin="0,2,70,0" FontWeight="Bold" FontSize="15" HorizontalAlignment="Right" Width="60" Click="Button_Click"/>
-        <Button Content="MIN" Margin="0,2,140,0" FontWeight="Bold" FontSize="15" HorizontalAlignment="Right" Width="60" Click="Button_Click_1"/>
+        <Button Content="X" Margin="0,2,2,0" FontWeight="Bold" FontSize="15" HorizontalAlignment="Right" Width="60" Click="CloseApp"/>
+        <Button Content="MAX" Margin="0,2,70,0" FontWeight="Bold" FontSize="15" HorizontalAlignment="Right" Width="60" Click="MaximizeWindow"/>
+        <Button Content="MIN" Margin="0,2,140,0" FontWeight="Bold" FontSize="15" HorizontalAlignment="Right" Width="60" Click="MinimizeWindow"/>
         <TabControl SelectionChanged="TabControl_Selected" ItemsSource="{Binding PageViews}" SelectedIndex="0" Margin="2,1,2,2" Grid.Row="1">
             <TabControl.Resources>
                 <DataTemplate DataType="{x:Type local:CashRegisterViewModel}">

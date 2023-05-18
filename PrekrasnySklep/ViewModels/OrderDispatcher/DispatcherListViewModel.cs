@@ -10,13 +10,13 @@ namespace PrekrasnySklep.ViewModels.OrderDispatcher
 {
     internal class DispatcherListViewModel : ViewModelBase
     {
-        public RelayCommand AddToCart { get; }
+        public RelayCommand GoToDetailsCommand { get; }
 
         private readonly OrderDispatcherViewModel _parent;
         public DispatcherListViewModel(OrderDispatcherViewModel parent)
         {
             _parent = parent;
-            AddToCart = new RelayCommand(AddProductToCart, CanExecute);
+            GoToDetailsCommand = new RelayCommand(GoToDetails, CanExecute);
             LoadOrders();
         }
 
@@ -69,7 +69,7 @@ namespace PrekrasnySklep.ViewModels.OrderDispatcher
             }
         }
 
-        private void AddProductToCart(object sender)
+        private void GoToDetails(object sender)
         {
             _parent.CurrentPanel = new DispatchViewModel(_parent, Order);
         }

@@ -35,6 +35,6 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <Button Grid.Row="1" Grid.Column="1" Margin="13" Command="{Binding AddToCart}">Mark as delivered</Button>
+        <Button Grid.Row="1" Grid.Column="1" Margin="13" Command="{Binding ChangeStatusCommand}">Mark as delivered</Button>
     </Grid>
 </UserControl>

@@ -11,10 +11,12 @@ namespace PrekrasnySklep.Views.Forms
             InitializeComponent();
             DataContext = viewModel;
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        private void Close(object sender, RoutedEventArgs e)
         {
             Window.GetWindow(this).Close();
         }
+
         private void NewPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (DataContext is ChangePasswordAdminViewModel viewModel && sender is PasswordBox passwordBox)

@@ -8,7 +8,7 @@ namespace PrekrasnySklep.ViewModels.OrderDispatcher
 {
     internal class DispatchViewModel : ViewModelBase
     {
-        public RelayCommand AddToCart { get; }
+        public RelayCommand ChangeStatusCommand { get; }
 
         private OrderDispatcherViewModel _parent;
 
@@ -33,10 +33,10 @@ namespace PrekrasnySklep.ViewModels.OrderDispatcher
         {
             _parent = parent;
             Order = order;
-            AddToCart = new RelayCommand(OpenProductList);
+            ChangeStatusCommand = new RelayCommand(ChangeStatus);
         }
 
-        public void OpenProductList(object sender)
+        public void ChangeStatus(object sender)
         {
             Order.Status = PrekrasnyDomainLayer.Models.Enums.OrderStatus.Delivered;
             AppState.SharedContext.Update(Order);

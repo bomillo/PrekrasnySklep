@@ -16,17 +16,17 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <ListView SelectionChanged="cartList_SelectionChanged" Name="cartList" Margin="10,10,5,10" ItemsSource="{Binding Orders}" SizeChanged="CartSizeChanged"  Grid.RowSpan="4">
+        <ListView SelectionChanged="SelectionChanged" Name="cartList" Margin="10,10,5,10" ItemsSource="{Binding Orders}" SizeChanged="MainListSizeChanged"  Grid.RowSpan="4">
             <ListView.View>
                 <GridView AllowsColumnReorder="False">
                     <GridViewColumn DisplayMemberBinding="{Binding Order.User.UserName}">
-                        <GridViewColumnHeader SizeChanged="CartSizeChanged" Content="Name"/>
+                        <GridViewColumnHeader SizeChanged="MainListSizeChanged" Content="Name"/>
                     </GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding TotalPrice}">
-                        <GridViewColumnHeader SizeChanged="CartSizeChanged" Content="Price"/>
+                        <GridViewColumnHeader SizeChanged="MainListSizeChanged" Content="Price"/>
                     </GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Order.Status}">
-                        <GridViewColumnHeader SizeChanged="CartSizeChanged" Content="Category"/>
+                        <GridViewColumnHeader SizeChanged="MainListSizeChanged" Content="Category"/>
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
@@ -35,14 +35,14 @@
             <TextBlock Text="{Binding SelectedOrder.Status}" FontSize="20" Grid.Column="1" VerticalAlignment="Center"/>
             <TextBlock Text="{Binding SelectedOrder.Recepient}" FontSize="20" Grid.Column="1" VerticalAlignment="Center"/>
         </StackPanel>
-        <ListView  Name="listView2" Margin="5,5,10,5" ItemsSource="{Binding SelectedOrder.Items}" SizeChanged="CartSizeChanged2" Grid.Column="2" Grid.Row="1">
+        <ListView  Name="listView2" Margin="5,5,10,5" ItemsSource="{Binding SelectedOrder.Items}" SizeChanged="DetailListSizeChanged" Grid.Column="2" Grid.Row="1">
             <ListView.View>
                 <GridView AllowsColumnReorder="False">
                     <GridViewColumn DisplayMemberBinding="{Binding Product.Name}">
-                        <GridViewColumnHeader SizeChanged="CartSizeChanged2" Content="Name"/>
+                        <GridViewColumnHeader SizeChanged="DetailListSizeChanged" Content="Name"/>
                     </GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Quantity}">
-                        <GridViewColumnHeader SizeChanged="CartSizeChanged2" Content="Qty."/>
+                        <GridViewColumnHeader SizeChanged="DetailListSizeChanged" Content="Qty."/>
                     </GridViewColumn>
                 </GridView>
             </ListView.View>

@@ -18,12 +18,12 @@ namespace PrekrasnySklep.Views.Tabs
             DataContext = viewModel;
         }
 
-        private void CartSizeChanged(object sender, SizeChangedEventArgs e)
+        private void MainListSizeChanged(object sender, SizeChangedEventArgs e)
         {
             ListView listView = cartList;
             GridView gView = listView.View as GridView;
 
-            var workingWidth = listView.ActualWidth - SystemParameters.VerticalScrollBarWidth; // take into account vertical scrollbar
+            var workingWidth = listView.ActualWidth - SystemParameters.VerticalScrollBarWidth; 
             var col1 = 0.60;
             var col2 = 0.20;
             var col3 = 0.20;
@@ -33,12 +33,12 @@ namespace PrekrasnySklep.Views.Tabs
             gView.Columns[2].Width = workingWidth * col3;
         }
 
-        private void CartSizeChanged2(object sender, SizeChangedEventArgs e)
+        private void DetailListSizeChanged(object sender, SizeChangedEventArgs e)
         {
             ListView listView = listView2;
             GridView gView = listView.View as GridView;
 
-            var workingWidth = listView.ActualWidth - SystemParameters.VerticalScrollBarWidth; // take into account vertical scrollbar
+            var workingWidth = listView.ActualWidth - SystemParameters.VerticalScrollBarWidth; 
             var col1 = 0.80;
             var col2 = 0.20;
 
@@ -47,7 +47,7 @@ namespace PrekrasnySklep.Views.Tabs
 
         }
 
-        private void cartList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             e.Handled = true;
             OrderViewerViewModel model = (OrderViewerViewModel)DataContext;
